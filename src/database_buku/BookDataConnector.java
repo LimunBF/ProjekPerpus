@@ -35,8 +35,24 @@ public class BookDataConnector {
     public static boolean doesIdBukuExist(Connection connection, int id) throws SQLException {
         return checkIfIdBukuExists(connection, id);
     }
-
 //    public static boolean doesUserexist(Connection connection, String username) throws SQLException{
 //        return checkifUsernameExist(connection, Username);
 //    }
+
+    public static boolean deleteBookByName(Connection connection, String bookName) {
+        try {
+            String deleteQuery = "DELETE FROM data_buku WHERE nama = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
+            preparedStatement.setString(1, bookName);
+
+            int rowCount = preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+
+            return rowCount > 0;
+        } catch (SQLException e) {
+            System.err.println("Error deleting book by name: " + e.getMessage());
+            return false;
+        }
+    }
 }
