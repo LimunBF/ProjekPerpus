@@ -71,7 +71,7 @@ public class Deletebuku {
                 if (userInput.matches("\\d+")) {
                     int id = Integer.parseInt(userInput);
 
-                    if (DatabaseConnector.doesIDBukuExist(koneksi, id)) {
+                    if (BookDataConnector.doesIDBukuExist(koneksi, id)) {
                         System.out.println("ID Tersebut Terdapat Di Dalam Database");
                         handleResponse(scanner, koneksi, id);
                         success = true;
@@ -85,7 +85,7 @@ public class Deletebuku {
                         return;
                     }
                 } else {
-                    boolean deleted = deleteBookByName(koneksi, userInput);
+                    boolean deleted = BookDataConnector.deleteBookByName(koneksi, userInput);
                     if (deleted) {
                         System.out.println("Buku berhasil dihapus dari Tabel Buku.");
                     } else {
