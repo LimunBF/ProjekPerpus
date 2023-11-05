@@ -13,7 +13,7 @@ public class BookDataConnector {
         return DriverManager.getConnection(url, username, password);
     }
     private static boolean checkIfIdBukuExists(Connection connection, int id) throws SQLException {
-        String checkQuery = "SELECT COUNT(*) FROM data_buku WHERE ID = ?";
+        String checkQuery = "SELECT COUNT(*) FROM data_buku WHERE id = ?";
         PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
         checkStatement.setInt(1, id);
         ResultSet resultSet = checkStatement.executeQuery();
@@ -32,7 +32,7 @@ public class BookDataConnector {
 //        return count > 0;
 //    }
 
-    public static boolean doesIdBukuExist(Connection connection, int id) throws SQLException {
+    public static boolean doesIDBukuExist(Connection connection, int id) throws SQLException {
         return checkIfIdBukuExists(connection, id);
     }
 //    public static boolean doesUserexist(Connection connection, String username) throws SQLException{
@@ -41,9 +41,9 @@ public class BookDataConnector {
 
     public static boolean deleteBookByName(Connection connection, String bookName) {
         try {
-            String deleteQuery = "DELETE FROM data_buku WHERE nama = ?";
+            String deleteQuery = "DELETE FROM data_buku WHERE Judul_Buku =  ?";
             PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
-            preparedStatement.setString(1, bookName);
+            preparedStatement.setString(1, bookName.trim());
 
             int rowCount = preparedStatement.executeUpdate();
 
