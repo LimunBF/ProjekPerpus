@@ -3,7 +3,8 @@ package database_mahasiswa;
 import java.sql.*;
 
 public class DatabaseConnector {
-    private static String url = "jdbc:mysql://localhost:3306/database_perpus";
+
+    private static String url = "jdbc:mysql://localhost:3306/projek_perpus";
     private static String username = "root";
     private static String password = "";
 
@@ -11,8 +12,8 @@ public class DatabaseConnector {
         Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(url, username, password);
     }
-    private static boolean checkIfIdExists(Connection connection, int id) throws SQLException {
-        String checkQuery = "SELECT COUNT(*) FROM mahasiswa WHERE ID = ?";
+    private static boolean checkIfIdBukuExists(Connection connection, int id) throws SQLException {
+        String checkQuery = "SELECT COUNT(*) FROM data_buku WHERE id = ?";
         PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
         checkStatement.setInt(1, id);
         ResultSet resultSet = checkStatement.executeQuery();
@@ -31,15 +32,27 @@ public class DatabaseConnector {
 //        return count > 0;
 //    }
 
-    public static boolean doesIdExist(Connection connection, int id) throws SQLException {
-        return checkIfIdExists(connection, id);
+    public static boolean doesIDBukuExist(Connection connection, int id) throws SQLException {
+        return checkIfIdBukuExists(connection, id);
     }
-
-    public static boolean doesIDBukuExist(Connection koneksi, int id) {
-        return false;
-    }
-
 //    public static boolean doesUserexist(Connection connection, String username) throws SQLException{
 //        return checkifUsernameExist(connection, Username);
 //    }
+
+    public static boolean deleteBookByName(Connection connection, String bookName) {
+        try {
+            String deleteQuery = "DELETE FROM data_buku WHERE Judul_Buku =  ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
+            preparedStatement.setString(1, bookName.trim());
+
+            int rowCount = preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+
+            return rowCount > 0;
+        } catch (SQLException e) {
+            System.err.println("Error deleting book by name: " + e.getMessage());
+            return false;
+        }
+    }
 }
