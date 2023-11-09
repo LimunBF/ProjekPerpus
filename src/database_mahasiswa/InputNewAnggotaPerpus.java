@@ -11,7 +11,6 @@ public class InputNewAnggotaPerpus {
         try {
             Connection koneksi = DatabaseConnector.getConnection();
             Statement st = koneksi.createStatement();
-            System.out.println("Koneksi Berhasil.");
 
             System.out.print("Masukkan Nama Anda Lengkap Anda : ");
             String namaanggota = scanner.nextLine();
@@ -38,7 +37,6 @@ public class InputNewAnggotaPerpus {
         try {
             Connection koneksi = DatabaseConnector.getConnection();
             Statement st = koneksi.createStatement();
-            System.out.println("Koneksi Berhasil.");
 
             System.out.print("Masukkan NIM Anda : " );
             String nimMHS = scanner.nextLine();
@@ -63,9 +61,8 @@ public class InputNewAnggotaPerpus {
 
     public static void newProdianggota(Scanner scanner) {
         try {
-            Connection koneksi = DatabaseConnector.getConnection();
+            Connection koneksi = DatabaseConnector.getConnection ();
             Statement st = koneksi.createStatement();
-            System.out.println("Koneksi Berhasil.");
 
             System.out.print("Masukkan Prodi Asal Anda : ");
             String prodiMHS = scanner.nextLine();
@@ -92,7 +89,32 @@ public class InputNewAnggotaPerpus {
         try {
             Connection koneksi = DatabaseConnector.getConnection();
             Statement st = koneksi.createStatement();
-            System.out.println("Koneksi Berhasil.");
+
+            System.out.print("Masukkan Fakultas Asal Anda : ");
+            String fakultasMHS = scanner.nextLine();
+
+            String insertQuery = "INSERT INTO anggota_perpus (Fakultas) VALUES (?)";
+            PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
+            preparedStatement.setString(6, fakultasMHS);
+            int rowCount = preparedStatement.executeUpdate();
+            if (rowCount > 0) {
+                System.out.println("Data Fakultas berhasil dimasukkan ke dalam data Anggota.");
+            } else {
+                System.out.println("Data Fakultas gagal dimasukkan ke dalam data Anggota.");
+            }
+            st.close();
+            preparedStatement.close();
+            koneksi.close();
+            System.out.println("\nKoneksi Ditutup.....");
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void newFakultasanggota(Scanner scanner) {
+        try {
+            Connection koneksi = DatabaseConnector.getConnection();
+            Statement st = koneksi.createStatement();
 
             System.out.print("Masukkan Fakultas Asal Anda : ");
             String fakultasMHS = scanner.nextLine();
@@ -114,19 +136,17 @@ public class InputNewAnggotaPerpus {
             System.out.println(ex.getMessage());
         }
     }
-
-    public static void makePasswordAnggota(Scanner scanner) {
+    public static void makestatspeminjamanAnggota(Scanner scanner) {
         try {
             Connection koneksi = DatabaseConnector.getConnection();
             Statement st = koneksi.createStatement();
-            System.out.println("Koneksi Berhasil.");
 
-            System.out.print("Masukkan password yang kamu inginkan: ");
-            String paswrd = scanner.nextLine();
+            System.out.print("Masukkan Status Peminjaman yang kamu inginkan: ");
+            String statspeminjam = scanner.nextLine();
 
             String insertQuery = "INSERT INTO data_buku (password) VALUES (?)";
             PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
-            preparedStatement.setString(5, paswrd);
+            preparedStatement.setString(5, statspeminjam);
             int rowCount = preparedStatement.executeUpdate();
             if (rowCount > 0) {
                 System.out.println("Data Password berhasil dimasukkan ke dalam data Anggota.");
@@ -140,5 +160,10 @@ public class InputNewAnggotaPerpus {
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        (scanner);
+        scanner.close();
     }
 }
