@@ -11,17 +11,22 @@ public class ReadAnggotaPerpus {
         try {
             Connection koneksi = DatabaseConnector.getConnection();
             Statement st = koneksi.createStatement();
-            String query = " select *from data_buku";
+            String query = " select *from anggota_perpus";
             ResultSet rs = st.executeQuery(query);
             System.out.println("--------------------------------------------");
-            System.out.println("[DATA BUKU]");
+            System.out.println("[DATA Anggota]");
             while (rs.next()) {
                 String id = rs.getString(1);
-                String judulbuku = rs.getString(2);
-                String pengarang = rs.getString(3);
-                String pengerbit = rs.getString(4);
-                String tahunterbit = rs.getString(5);
-                String output = id + " - " + judulbuku + " - " + pengarang + " - " + pengerbit+ " - "+ tahunterbit;
+                String Nama = rs.getString(2);
+                String NIM = rs.getString(3);
+                String Prodi = rs.getString(4);
+                String Fakultas = rs.getString(5);
+                String stats_peminjaman = rs.getString(6);
+                String buku_yg_dipinjam = rs.getString(7);
+                String tanggal_peminjaman = rs.getString(8);
+                String tanggal_pengembalian = rs.getString(9);
+                String sisa_waktu = rs.getString(10);
+                String output = id + " - " + Nama + " - " + NIM + " - " + Prodi+ " - "+ Fakultas + " - " + stats_peminjaman + " - " + buku_yg_dipinjam+ " - " + tanggal_peminjaman + " - " + tanggal_pengembalian + " - " + sisa_waktu;
                 System.out.println(output);
             }
             st.close();
