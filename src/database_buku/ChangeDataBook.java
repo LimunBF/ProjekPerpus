@@ -33,7 +33,7 @@ public class ChangeDataBook {
                     }
                 } else {
                     String name = input;
-                    int id = DatabaseConnector.getBukuIDByNama(koneksi, name);
+                    int id = BookDataConnector.getBukuIDByNama(koneksi, name);
 
                     if (id != -1) {
                         updateData(scanner, preparedStatement, id);
@@ -44,7 +44,6 @@ public class ChangeDataBook {
                     }
                 }
             }
-
             koneksi.close();
             preparedStatement.close();
         } catch (SQLException | ClassNotFoundException | InterruptedException ex) {

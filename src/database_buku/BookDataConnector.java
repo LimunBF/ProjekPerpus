@@ -22,10 +22,10 @@ public class BookDataConnector {
         return count > 0;
     }
 
-    //    public static boolean checkifUsernameExist(Connection connection, int username) throws SQLException{
-//        String checkQuery = "SELECT COUNT(*) FROM mahasiswa WHERE Username = ?";
+//        public static boolean checkifbooknameExist(Connection connection, String Judul_Buku) throws SQLException{
+//        String checkQuery = "SELECT COUNT(*) FROM data_buku WHERE Judul_Buku = ?";
 //        PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
-//        checkStatement.setInt(1, Username);
+//        checkStatement.setString(1, Judul_Buku);
 //        ResultSet resultSet = checkStatement.executeQuery();
 //        resultSet.next();
 //        int count = resultSet.getInt(1);
@@ -35,8 +35,8 @@ public class BookDataConnector {
     public static boolean doesIDBukuExist(Connection connection, int id) throws SQLException {
         return checkIfIdBukuExists(connection, id);
     }
-//    public static boolean doesUserexist(Connection connection, String username) throws SQLException{
-//        return checkifUsernameExist(connection, Username);
+//    public static boolean doesbookexist(Connection connection, String Judul_Buku) throws SQLException{
+//        return checkifbooknameExist(connection, Judul_Buku);
 //    }
 
     public static boolean deleteBookByName(Connection connection, String bookName) {
@@ -54,5 +54,18 @@ public class BookDataConnector {
             System.err.println("Error deleting book by name: " + e.getMessage());
             return false;
         }
+    }
+
+    public static int getBukuIDByNama(Connection connection, String Judul_Buku) throws SQLException {
+        String query = "SELECT ID FROM data_buku WHERE Judul_Buku = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, Judul_Buku);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("ID");
+                }
+            }
+        }
+        return -1;
     }
 }
