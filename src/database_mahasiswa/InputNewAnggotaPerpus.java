@@ -111,31 +111,6 @@ public class InputNewAnggotaPerpus {
         }
     }
 
-    public static void newFakultasanggota(Scanner scanner) {
-        try {
-            Connection koneksi = DatabaseConnector.getConnection();
-            Statement st = koneksi.createStatement();
-
-            System.out.print("Masukkan Fakultas Asal Anda : ");
-            String fakultasMHS = scanner.nextLine();
-
-            String insertQuery = "INSERT INTO anggota_perpus (Fakultas) VALUES (?)";
-            PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
-            preparedStatement.setString(5, fakultasMHS);
-            int rowCount = preparedStatement.executeUpdate();
-            if (rowCount > 0) {
-                System.out.println("Data Fakultas berhasil dimasukkan ke dalam data Anggota.");
-            } else {
-                System.out.println("Data Fakultas gagal dimasukkan ke dalam data Anggota.");
-            }
-            st.close();
-            preparedStatement.close();
-            koneksi.close();
-            System.out.println("\nKoneksi Ditutup.....");
-        } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
     public static void makestatspeminjamanAnggota(Scanner scanner) {
         try {
             Connection koneksi = DatabaseConnector.getConnection();
@@ -163,7 +138,6 @@ public class InputNewAnggotaPerpus {
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        (scanner);
         scanner.close();
     }
 }

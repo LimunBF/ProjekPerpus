@@ -29,7 +29,7 @@ public class loginAdmin extends javax.swing.JFrame {
         LoginText = new javax.swing.JLabel();
         InputUsername = new javax.swing.JTextField();
         inputPassword = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        LoginButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,7 +41,7 @@ public class loginAdmin extends javax.swing.JFrame {
 
         inputPassword.setText("Password");
 
-        jButton1.setText("LOGIN");
+        LoginButton.setText("LOGIN");
 
         jTextField1.setText("jTextField1");
 
@@ -58,7 +58,7 @@ public class loginAdmin extends javax.swing.JFrame {
                             .addComponent(InputUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(410, 410, 410)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(411, 411, 411)
                             .addComponent(LoginText))))
@@ -80,7 +80,7 @@ public class loginAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(102, 102, 102))
         );
 
@@ -124,9 +124,9 @@ public class loginAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField InputUsername;
+    private javax.swing.JButton LoginButton;
     private javax.swing.JLabel LoginText;
     private javax.swing.JTextField inputPassword;
-    private javax.swing.JButton jButton1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
