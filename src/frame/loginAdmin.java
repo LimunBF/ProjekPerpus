@@ -4,6 +4,8 @@
  */
 package frame;
 
+import database_admin.ReadAdmin;
+
 /**
  *
  * @author Asus TUF
@@ -13,6 +15,8 @@ public class loginAdmin extends javax.swing.JFrame {
     /**
      * Creates new form loginAdmin
      */
+    private static final String DEFAULT_USERNAME_TEXT = "Username";
+    
     public loginAdmin() {
         initComponents();
     }
@@ -38,10 +42,25 @@ public class loginAdmin extends javax.swing.JFrame {
         LoginText.setText("LOGIN");
 
         InputUsername.setText("Username");
+        InputUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                InputUsernameFocusGained(evt);
+            }
+        });
+        InputUsername.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                InputUsernameMouseClicked(evt);
+            }
+        });
 
         inputPassword.setText("Password");
 
         LoginButton.setText("LOGIN");
+        LoginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginButtonActionPerformed(evt);
+            }
+        });
 
         jTextField1.setText("jTextField1");
 
@@ -86,6 +105,38 @@ public class loginAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
+        // TODO add your handling code here:
+        String username = InputUsername.getText();
+        String password = new String(inputPassword.getText());
+
+        boolean isValid = ReadAdmin.checkCredentials(username, password);
+
+        if (isValid) {
+            // Do something when login is successful
+            Menu menuFrame = new Menu();
+            menuFrame.setVisible(true);
+            dispose();
+        } else {
+            // Do something when login fails
+            System.out.println("Invalid Username or Password");
+        }
+    }//GEN-LAST:event_LoginButtonActionPerformed
+
+    private void InputUsernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InputUsernameMouseClicked
+        // TODO add your handling code here:                                         
+        if (InputUsername.getText().equals(DEFAULT_USERNAME_TEXT)) {
+            InputUsername.setText("");
+        }  
+    }//GEN-LAST:event_InputUsernameMouseClicked
+
+    private void InputUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_InputUsernameFocusGained
+        // TODO add your handling code here:
+        if (InputUsername.getText().isEmpty()) {
+            InputUsername.setText(DEFAULT_USERNAME_TEXT);
+        }
+    }//GEN-LAST:event_InputUsernameFocusGained
 
     /**
      * @param args the command line arguments
