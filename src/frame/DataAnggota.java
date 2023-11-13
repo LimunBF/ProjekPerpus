@@ -17,6 +17,7 @@ import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import database_mahasiswa.DatabaseConnector;
 import database_mahasiswa.ReadAnggotaPerpus;
+import database_mahasiswa.CreateAnggota;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -323,6 +324,7 @@ private void loadTableData() {
 
     private void InputNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNamaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_InputNamaActionPerformed
 
     private void InputNIMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNIMActionPerformed
@@ -339,7 +341,12 @@ private void loadTableData() {
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         // TODO add your handling code here:
+        String nama = InputNama.getText();
+        String nim = InputFakultas.getText();
+        String fakultas = InputFakultas.getText();
+        String prodi = InputProdi.getText();
         
+        CreateAnggota.createDataAnggota(nama, nim, fakultas, prodi);
     }//GEN-LAST:event_SaveButtonActionPerformed
 
     /**

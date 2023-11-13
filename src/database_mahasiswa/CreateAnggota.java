@@ -7,113 +7,27 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class CreateAnggota {
-    public static void createDataAnggota(Scanner scanner){
+        public static void createDataAnggota(String nama, String nim, String fakultas, String prodi) {
         try {
             Connection koneksi = DatabaseConnector.getConnection();
-            Statement st = koneksi.createStatement();
-            System.out.println("Koneksi Berhasil.");
 
-            System.out.print("Masukkan Nama Anda: ");
-            String judulbuku = scanner.nextLine();
-
-            String insertQuery = "INSERT INTO anggota_perpus (Nama) VALUES (?)";
+            String insertQuery = "INSERT INTO anggota_perpus (Nama, Nim, Fakultas, Prodi) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
-            preparedStatement.setString(2, judulbuku);
+            preparedStatement.setString(2, nama);
+            preparedStatement.setString(3, nim);
+            preparedStatement.setString(4, fakultas);
+            preparedStatement.setString(5, prodi);
+
             int rowCount = preparedStatement.executeUpdate();
             if (rowCount > 0) {
-                System.out.println("Data judul berhasil dimasukkan ke dalam data buku.");
+                System.out.println("Data anggota berhasil dimasukkan ke dalam database.");
             } else {
-                System.out.println("Data judul gagal dimasukkan ke dalam data buku.");
+                System.out.println("Data anggota gagal dimasukkan ke dalam database.");
             }
-            st.close();
+
             preparedStatement.close();
             koneksi.close();
-            System.out.println("\nKoneksi Ditutup.....");
-        }
-        catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    public static void createpengarangtbuku(Scanner scanner) {
-        try {
-            Connection koneksi = DatabaseConnector.getConnection();
-            Statement st = koneksi.createStatement();
-            System.out.println("Koneksi Berhasil.");
-
-            System.out.print("Masukkan Pengarang Buku: ");
-            String pengarangbuku = scanner.nextLine();
-
-            String insertQuery = "INSERT INTO data_buku (Pengarang) VALUES (?)";
-            PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
-            preparedStatement.setString(3, pengarangbuku);
-            int rowCount = preparedStatement.executeUpdate();
-            if (rowCount > 0) {
-                System.out.println("Data judul berhasil dimasukkan ke dalam data buku.");
-            } else {
-                System.out.println("Data judul gagal dimasukkan ke dalam data buku.");
-            }
-            st.close();
-            preparedStatement.close();
-            koneksi.close();
-            System.out.println("\nKoneksi Ditutup.....");
         } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    public static void createpenerbittbuku (Scanner scanner){
-        try {
-            Connection koneksi = DatabaseConnector.getConnection();
-            Statement st = koneksi.createStatement();
-            System.out.println("Koneksi Berhasil.");
-
-            System.out.print("Masukkan Penerbit Buku: ");
-            String penerbitbuku = scanner.nextLine();
-
-            String insertQuery = "INSERT INTO data_buku (Penerbit) VALUES (?)";
-            PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
-            preparedStatement.setString(4, penerbitbuku);
-            int rowCount = preparedStatement.executeUpdate();
-            if (rowCount > 0) {
-                System.out.println("Data judul berhasil dimasukkan ke dalam data buku.");
-            } else {
-                System.out.println("Data judul gagal dimasukkan ke dalam data buku.");
-            }
-            st.close();
-            preparedStatement.close();
-            koneksi.close();
-            System.out.println("\nKoneksi Ditutup.....");
-        }
-        catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    public static void createtahunterbitbuku (Scanner scanner){
-        try {
-            Connection koneksi = DatabaseConnector.getConnection();
-            Statement st = koneksi.createStatement();
-            System.out.println("Koneksi Berhasil.");
-
-            System.out.print("Masukkan Tahun Terbit Buku: ");
-            String tahunterbit = scanner.nextLine();
-
-            String insertQuery = "INSERT INTO data_buku (Tahun_terbit) VALUES (?)";
-            PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
-            preparedStatement.setString(5, tahunterbit);
-            int rowCount = preparedStatement.executeUpdate();
-            if (rowCount > 0) {
-                System.out.println("Data judul berhasil dimasukkan ke dalam data buku.");
-            } else {
-                System.out.println("Data judul gagal dimasukkan ke dalam data buku.");
-            }
-            st.close();
-            preparedStatement.close();
-            koneksi.close();
-            System.out.println("\nKoneksi Ditutup.....");
-        }
-        catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
