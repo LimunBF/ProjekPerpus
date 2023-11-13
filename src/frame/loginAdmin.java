@@ -16,6 +16,7 @@ public class loginAdmin extends javax.swing.JFrame {
      * Creates new form loginAdmin
      */
     private static final String DEFAULT_USERNAME_TEXT = "Username";
+    private static final String DEFAULT_PASSWORD_TEXT = "Password";
     
     public loginAdmin() {
         initComponents();
@@ -162,7 +163,7 @@ public class loginAdmin extends javax.swing.JFrame {
 
     private void inputPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputPasswordMouseClicked
         // TODO add your handling code here:
-        if (inputPassword.getText().equals(DEFAULT_USERNAME_TEXT)) {
+        if (inputPassword.getText().equals(DEFAULT_PASSWORD_TEXT)) {
             inputPassword.setText("");
         }  
     }//GEN-LAST:event_inputPasswordMouseClicked
@@ -174,7 +175,7 @@ public class loginAdmin extends javax.swing.JFrame {
     private void inputPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputPasswordFocusGained
         // TODO add your handling code here:
         if (inputPassword.getText().isEmpty()) {
-            inputPassword.setText(DEFAULT_USERNAME_TEXT);
+            inputPassword.setText(DEFAULT_PASSWORD_TEXT);
         }
     }//GEN-LAST:event_inputPasswordFocusGained
 
