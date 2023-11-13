@@ -5,11 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
-import frame.DataBuku;
+import frame.DataAnggota;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadAnggotaPerpus extends DataBuku{
+public class ReadAnggotaPerpus extends DataAnggota{
  
       public static List<String[]> readAnggotaPerpus(Scanner scanner) {
         List<String[]> anggotaList = new ArrayList<>();
