@@ -55,6 +55,17 @@ private void loadTableData() {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        DialogCreateAGt = new javax.swing.JDialog();
+        LabelNama = new javax.swing.JLabel();
+        LabelNIM = new javax.swing.JLabel();
+        LabelProdi = new javax.swing.JLabel();
+        LabelFakultas = new javax.swing.JLabel();
+        LabelDataAnggota = new javax.swing.JLabel();
+        InputNama = new javax.swing.JTextField();
+        InputNIM = new javax.swing.JTextField();
+        InputFakultas = new javax.swing.JTextField();
+        InputProdi = new javax.swing.JTextField();
+        SaveButton = new javax.swing.JButton();
         Create = new javax.swing.JButton();
         Change = new javax.swing.JButton();
         Delette = new javax.swing.JButton();
@@ -63,6 +74,110 @@ private void loadTableData() {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+
+        LabelNama.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
+        LabelNama.setText("Nama");
+
+        LabelNIM.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
+        LabelNIM.setText("NIM");
+
+        LabelProdi.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
+        LabelProdi.setText("Prodi");
+
+        LabelFakultas.setFont(new java.awt.Font("Baskerville Old Face", 0, 16)); // NOI18N
+        LabelFakultas.setText("Fakultas");
+
+        LabelDataAnggota.setFont(new java.awt.Font("GeoSlab703 Md BT", 0, 18)); // NOI18N
+        LabelDataAnggota.setText("Data Anggota Baru");
+
+        InputNama.setText("  ");
+        InputNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputNamaActionPerformed(evt);
+            }
+        });
+
+        InputNIM.setText("  ");
+        InputNIM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputNIMActionPerformed(evt);
+            }
+        });
+
+        InputFakultas.setText("  ");
+        InputFakultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputFakultasActionPerformed(evt);
+            }
+        });
+
+        InputProdi.setText("  ");
+        InputProdi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputProdiActionPerformed(evt);
+            }
+        });
+
+        SaveButton.setFont(new java.awt.Font("Imprint MT Shadow", 1, 15)); // NOI18N
+        SaveButton.setText("SAVE");
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DialogCreateAGtLayout = new javax.swing.GroupLayout(DialogCreateAGt.getContentPane());
+        DialogCreateAGt.getContentPane().setLayout(DialogCreateAGtLayout);
+        DialogCreateAGtLayout.setHorizontalGroup(
+            DialogCreateAGtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogCreateAGtLayout.createSequentialGroup()
+                .addGroup(DialogCreateAGtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogCreateAGtLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(DialogCreateAGtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LabelFakultas)
+                            .addGroup(DialogCreateAGtLayout.createSequentialGroup()
+                                .addGroup(DialogCreateAGtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LabelProdi)
+                                    .addComponent(LabelNama))
+                                .addGap(65, 65, 65)
+                                .addGroup(DialogCreateAGtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LabelDataAnggota)
+                                    .addComponent(InputNama, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(InputNIM, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(InputFakultas, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(InputProdi, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(LabelNIM)))
+                    .addGroup(DialogCreateAGtLayout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(SaveButton)))
+                .addContainerGap(170, Short.MAX_VALUE))
+        );
+        DialogCreateAGtLayout.setVerticalGroup(
+            DialogCreateAGtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogCreateAGtLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(LabelDataAnggota)
+                .addGap(30, 30, 30)
+                .addGroup(DialogCreateAGtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelNama))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DialogCreateAGtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputNIM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelNIM))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DialogCreateAGtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputProdi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelProdi))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DialogCreateAGtLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(InputFakultas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelFakultas))
+                .addGap(36, 36, 36)
+                .addComponent(SaveButton)
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1200, 700));
@@ -151,7 +266,7 @@ private void loadTableData() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(0, 946, Short.MAX_VALUE))
+                        .addGap(0, 1105, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -179,7 +294,8 @@ private void loadTableData() {
 
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
         // TODO add your handling code here:
-        
+        DialogCreateAGt.setSize(550, 300);
+        DialogCreateAGt.setVisible(true);
     }//GEN-LAST:event_CreateActionPerformed
 
     private void DeletteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletteActionPerformed
@@ -204,6 +320,27 @@ private void loadTableData() {
         menuFrame.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void InputNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputNamaActionPerformed
+
+    private void InputNIMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputNIMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputNIMActionPerformed
+
+    private void InputFakultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputFakultasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputFakultasActionPerformed
+
+    private void InputProdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputProdiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputProdiActionPerformed
+
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_SaveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,7 +382,18 @@ private void loadTableData() {
     private javax.swing.JButton Change;
     private javax.swing.JButton Create;
     private javax.swing.JButton Delette;
+    private javax.swing.JDialog DialogCreateAGt;
     private javax.swing.JToggleButton Gosearchbtton;
+    private javax.swing.JTextField InputFakultas;
+    private javax.swing.JTextField InputNIM;
+    private javax.swing.JTextField InputNama;
+    private javax.swing.JTextField InputProdi;
+    private javax.swing.JLabel LabelDataAnggota;
+    private javax.swing.JLabel LabelFakultas;
+    private javax.swing.JLabel LabelNIM;
+    private javax.swing.JLabel LabelNama;
+    private javax.swing.JLabel LabelProdi;
+    private javax.swing.JButton SaveButton;
     private javax.swing.JTextField SearchField;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
