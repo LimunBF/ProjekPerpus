@@ -65,7 +65,7 @@ private void loadTableData() {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(889, 540));
+        setPreferredSize(new java.awt.Dimension(1200, 700));
 
         Create.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
         Create.setText("Create");
@@ -151,7 +151,7 @@ private void loadTableData() {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(0, 779, Short.MAX_VALUE))
+                        .addGap(0, 946, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -179,6 +179,7 @@ private void loadTableData() {
 
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_CreateActionPerformed
 
     private void DeletteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletteActionPerformed

@@ -54,6 +54,24 @@ public class loginAdmin extends javax.swing.JFrame {
         });
 
         inputPassword.setText("Password");
+        inputPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputPasswordFocusLost(evt);
+            }
+        });
+        inputPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inputPasswordMouseClicked(evt);
+            }
+        });
+        inputPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputPasswordActionPerformed(evt);
+            }
+        });
 
         LoginButton.setText("LOGIN");
         LoginButton.addActionListener(new java.awt.event.ActionListener() {
@@ -137,6 +155,28 @@ public class loginAdmin extends javax.swing.JFrame {
             InputUsername.setText(DEFAULT_USERNAME_TEXT);
         }
     }//GEN-LAST:event_InputUsernameFocusGained
+
+    private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputPasswordActionPerformed
+
+    private void inputPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputPasswordMouseClicked
+        // TODO add your handling code here:
+        if (inputPassword.getText().equals(DEFAULT_USERNAME_TEXT)) {
+            inputPassword.setText("");
+        }  
+    }//GEN-LAST:event_inputPasswordMouseClicked
+
+    private void inputPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputPasswordFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputPasswordFocusLost
+
+    private void inputPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputPasswordFocusGained
+        // TODO add your handling code here:
+        if (inputPassword.getText().isEmpty()) {
+            inputPassword.setText(DEFAULT_USERNAME_TEXT);
+        }
+    }//GEN-LAST:event_inputPasswordFocusGained
 
     /**
      * @param args the command line arguments
