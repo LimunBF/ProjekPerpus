@@ -1,17 +1,23 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package database_mahasiswa;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Scanner;
 
-public class CreateAnggota {
-    public static void createDataAnggota(String nama, String nim, String fakultas, String prodi) {
+/**
+ *
+ * @author Limun
+ */
+public class DeleteAnggota {
+    public static void deleteDataAnggota(String nama, String nim, String fakultas, String prodi) {
         try {
             Connection koneksi = DatabaseConnector.getConnection();
 
-            String insertQuery = "INSERT INTO anggota_perpus (Nama, Nim, Fakultas, Prodi) VALUES (?, ?, ?, ?)";
+            String insertQuery = "DELETE FROM anggota_perpus (Nama, Nim, Fakultas, Prodi) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
             preparedStatement.setString(1, nama);
             preparedStatement.setString(2, nim);
@@ -31,4 +37,5 @@ public class CreateAnggota {
             System.out.println(ex.getMessage());
         }
     }
+    
 }
