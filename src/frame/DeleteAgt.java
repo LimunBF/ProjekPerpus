@@ -5,6 +5,9 @@
 package frame;
 
 import database_mahasiswa.DeleteAnggota;
+import database_mahasiswa.DatabaseConnector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -33,7 +36,6 @@ public class DeleteAgt extends javax.swing.JFrame {
     private void initComponents() {
 
         LabelNama = new javax.swing.JLabel();
-        TextNama = new javax.swing.JTextField();
         TextNIM = new javax.swing.JTextField();
         LabelNIM = new javax.swing.JLabel();
         LabelFakultas = new javax.swing.JLabel();
@@ -48,26 +50,6 @@ public class DeleteAgt extends javax.swing.JFrame {
 
         LabelNama.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         LabelNama.setText("Nama ");
-
-        TextNama.setText("Nama Yang Ingin Dihapus");
-        TextNama.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                TextNamaFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                TextNamaFocusLost(evt);
-            }
-        });
-        TextNama.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TextNamaMouseClicked(evt);
-            }
-        });
-        TextNama.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextNamaActionPerformed(evt);
-            }
-        });
 
         TextNIM.setText("NIM Yang Ingin Dihapus");
         TextNIM.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -136,7 +118,6 @@ public class DeleteAgt extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel1.setText("Hapus Data Anggota");
 
-        ListNama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         ListNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ListNamaActionPerformed(evt);
@@ -166,7 +147,6 @@ public class DeleteAgt extends javax.swing.JFrame {
                             .addComponent(LabelProdi, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TextNama)
                             .addComponent(TextNIM)
                             .addComponent(TextProdi)
                             .addComponent(TextFakultas, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
@@ -184,12 +164,10 @@ public class DeleteAgt extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ListNama, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextNama, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelNama))
+                    .addComponent(LabelNama)
+                    .addComponent(ListNama, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextNIM, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,15 +182,11 @@ public class DeleteAgt extends javax.swing.JFrame {
                     .addComponent(LabelProdi))
                 .addGap(18, 18, 18)
                 .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TextNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNamaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextNamaActionPerformed
 
     private void TextNIMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextNIMActionPerformed
         // TODO add your handling code here:
@@ -221,20 +195,6 @@ public class DeleteAgt extends javax.swing.JFrame {
     private void TextFakultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFakultasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextFakultasActionPerformed
-
-    private void TextNamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TextNamaMouseClicked
-        // TODO add your handling code here:
-        if (TextNama.getText().equals(DEFAULT_Nama_TEXT)) {
-            TextNama.setText("");
-        }
-    }//GEN-LAST:event_TextNamaMouseClicked
-
-    private void TextNamaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextNamaFocusGained
-        // TODO add your handling code here:
-        if (TextNama.getText().isEmpty()) {
-            TextNama.setText(DEFAULT_Nama_TEXT);
-        }
-    }//GEN-LAST:event_TextNamaFocusGained
 
     private void TextNIMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TextNIMMouseClicked
         // TODO add your handling code here:
@@ -270,13 +230,6 @@ public class DeleteAgt extends javax.swing.JFrame {
             TextProdi.setText(DEFAULT_PRODI_TEXT);
         }
     }//GEN-LAST:event_TextProdiFocusGained
-
-    private void TextNamaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextNamaFocusLost
-        // TODO add your handling code here:
-        if ( TextNama.getText().isEmpty()){
-            TextNama.setText(DEFAULT_Nama_TEXT);
-        }
-    }//GEN-LAST:event_TextNamaFocusLost
 
     private void TextNIMFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TextNIMFocusLost
         // TODO add your handling code here:
@@ -323,7 +276,7 @@ public class DeleteAgt extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             // TODO add your handling code here:
-            String nama = TextNama.getText();
+            String nama = (String) ListNama.getSelectedItem();
             String nim = TextNIM.getText();
             String fakultas = TextFakultas.getText();
             String prodi = TextProdi.getText();
@@ -341,38 +294,6 @@ public class DeleteAgt extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeleteAgt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeleteAgt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeleteAgt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeleteAgt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DeleteAgt().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelFakultas;
     private javax.swing.JLabel LabelNIM;
@@ -382,7 +303,6 @@ public class DeleteAgt extends javax.swing.JFrame {
     private javax.swing.JButton SubmitButton;
     private javax.swing.JTextField TextFakultas;
     private javax.swing.JTextField TextNIM;
-    private javax.swing.JTextField TextNama;
     private javax.swing.JTextField TextProdi;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
