@@ -8,6 +8,13 @@ import database_mahasiswa.DeleteAnggota;
 import database_mahasiswa.DatabaseConnector;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Component;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 /**
  *
@@ -35,6 +42,8 @@ public class DeleteAgt extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        DialogWarning = new javax.swing.JDialog();
+        label1 = new java.awt.Label();
         LabelNama = new javax.swing.JLabel();
         TextNIM = new javax.swing.JTextField();
         LabelNIM = new javax.swing.JLabel();
@@ -45,6 +54,27 @@ public class DeleteAgt extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         ListNama = new javax.swing.JComboBox<>();
         SubmitButton = new javax.swing.JButton();
+        BackButton = new javax.swing.JButton();
+
+        label1.setFont(new java.awt.Font("Clarendon BT", 0, 18)); // NOI18N
+        label1.setText("Data Berhasil Dimasukkan");
+
+        javax.swing.GroupLayout DialogWarningLayout = new javax.swing.GroupLayout(DialogWarning.getContentPane());
+        DialogWarning.getContentPane().setLayout(DialogWarningLayout);
+        DialogWarningLayout.setHorizontalGroup(
+            DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogWarningLayout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(118, Short.MAX_VALUE))
+        );
+        DialogWarningLayout.setVerticalGroup(
+            DialogWarningLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogWarningLayout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(171, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +148,7 @@ public class DeleteAgt extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel1.setText("Hapus Data Anggota");
 
+        ListNama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Yang Ingin Dihapus" }));
         ListNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ListNamaActionPerformed(evt);
@@ -129,6 +160,14 @@ public class DeleteAgt extends javax.swing.JFrame {
         SubmitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SubmitButtonActionPerformed(evt);
+            }
+        });
+
+        BackButton.setFont(new java.awt.Font("Bebas Neue", 0, 14)); // NOI18N
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
             }
         });
 
@@ -156,7 +195,10 @@ public class DeleteAgt extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(344, 344, 344)
-                        .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(BackButton)))
                 .addContainerGap(182, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -182,7 +224,9 @@ public class DeleteAgt extends javax.swing.JFrame {
                     .addComponent(LabelProdi))
                 .addGap(18, 18, 18)
                 .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(186, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BackButton)
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         pack();
@@ -275,26 +319,51 @@ public class DeleteAgt extends javax.swing.JFrame {
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         // TODO add your handling code here:
         try {
-            // TODO add your handling code here:
-            String nama = (String) ListNama.getSelectedItem();
-            String nim = TextNIM.getText();
-            String fakultas = TextFakultas.getText();
-            String prodi = TextProdi.getText();
+           String nama = (String) ListNama.getSelectedItem();
+           String nim = TextNIM.getText();
+           String fakultas = TextFakultas.getText();
+           String prodi = TextProdi.getText();
 
-            DeleteAnggota.deleteDataAnggota(nama, nim, fakultas, prodi);
+           DeleteAnggota.deleteDataAnggota(nama, nim, fakultas, prodi);
 
-            DataAnggota framedata = new DataAnggota();
-            framedata.setVisible(true);
-            dispose();
-        }   catch (Exception e) {
-            e.printStackTrace();
-        }
+           String successMessage = "Data has been successfully submitted!";
+           JOptionPane.showMessageDialog(this, successMessage, "Success", JOptionPane.INFORMATION_MESSAGE);
+
+           Timer timer = new Timer(2000, new ActionListener() {
+               @Override
+               public void actionPerformed(ActionEvent e) {
+                   // Close the dialog
+                   Window window = SwingUtilities.getWindowAncestor((Component) e.getSource());
+                   if (window != null) {
+                       window.dispose();
+                   }
+               }
+           });
+           timer.setRepeats(false); 
+           timer.start();
+
+           DataAnggota framedata = new DataAnggota();
+           framedata.setVisible(true);
+           dispose();
+       } catch (Exception e) {
+           // Display error message
+           String errorMessage = "Error occurred: " + e.getMessage();
+           JOptionPane.showMessageDialog(this, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
+       }
     }//GEN-LAST:event_SubmitButtonActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        DataAnggota datamenu = new DataAnggota();
+        datamenu.setVisible(true);
+    }//GEN-LAST:event_BackButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
+    private javax.swing.JDialog DialogWarning;
     private javax.swing.JLabel LabelFakultas;
     private javax.swing.JLabel LabelNIM;
     private javax.swing.JLabel LabelNama;
@@ -305,5 +374,6 @@ public class DeleteAgt extends javax.swing.JFrame {
     private javax.swing.JTextField TextNIM;
     private javax.swing.JTextField TextProdi;
     private javax.swing.JLabel jLabel1;
+    private java.awt.Label label1;
     // End of variables declaration//GEN-END:variables
 }

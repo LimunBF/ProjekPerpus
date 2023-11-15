@@ -10,12 +10,12 @@ import database_mahasiswa.CreateAnggota;
  *
  * @author Asus TUF
  */
-public class Registrasi extends javax.swing.JFrame {
+public class RegistrasiAnggota extends javax.swing.JFrame {
 
     /**
      * Creates new form Registrasi
      */
-    public Registrasi() {
+    public RegistrasiAnggota() {
         initComponents();
     }
 

@@ -77,6 +77,11 @@ private void loadTableData() {
 
         Change.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
         Change.setText("Change");
+        Change.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeActionPerformed(evt);
+            }
+        });
 
         Delette.setFont(new java.awt.Font("Bebas Neue", 0, 18)); // NOI18N
         Delette.setText("Delete");
@@ -180,7 +185,7 @@ private void loadTableData() {
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
         // TODO add your handling code here
         dispose();
-        Registrasi menuFrame = new Registrasi();
+        RegistrasiAnggota menuFrame = new RegistrasiAnggota();
         menuFrame.setVisible(true);
     }//GEN-LAST:event_CreateActionPerformed
 
@@ -208,6 +213,11 @@ private void loadTableData() {
         Menu back = new Menu();
         back.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_ChangeActionPerformed
 
     /**
      * @param args the command line arguments
