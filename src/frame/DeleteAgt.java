@@ -310,21 +310,6 @@ public class DeleteAgt extends javax.swing.JFrame {
 
     private void ListNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListNamaActionPerformed
         // TODO add your handling code here:
-        try {
-            String selectedName = (String) ListNama.getSelectedItem();
-
-            // Fetch data from the database based on the selected name
-            // Assuming you have a method in DatabaseConnector to get data by name
-            // Update the method signature accordingly
-             mahasiswa = DatabaseConnector.getNamesFromDatabase(selectedName);
-
-            // Set the values in the text fields
-            TextNIM.setText(mahasiswa.getNIM());
-            TextFakultas.setText(mahasiswa.getFakultas());
-            TextProdi.setText(mahasiswa.getProdi());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
     }//GEN-LAST:event_ListNamaActionPerformed
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
