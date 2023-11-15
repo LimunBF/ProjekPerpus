@@ -28,21 +28,23 @@
               <Component id="jLabel1" min="-2" pref="130" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="320" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="140" pref="140" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="Back" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="SubmitButton" min="-2" pref="132" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="325" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="LabelNama" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="LabelFakultas" pref="92" max="32767" attributes="0"/>
-                          <Component id="LabelNIM" min="-2" pref="70" max="-2" attributes="0"/>
-                          <Component id="LabelProdi" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="LabelFakultas" pref="92" max="32767" attributes="0"/>
+                              <Component id="LabelNIM" min="-2" pref="70" max="-2" attributes="0"/>
+                              <Component id="LabelProdi" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="LabelNama" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
