@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
-import frame.DataAnggota;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import frame.DataAnggota;
 
-public class ReadAnggotaPerpus extends DataAnggota{
- 
-      public static List<String[]> readAnggotaPerpus(Scanner scanner) {
+public class ReadAnggotaPerpus extends DataAnggota {
+
+    public static List<String[]> readAnggotaPerpus(Scanner scanner) {
         List<String[]> anggotaList = new ArrayList<>();
 
         try {
@@ -21,7 +21,7 @@ public class ReadAnggotaPerpus extends DataAnggota{
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                String[] anggota = new String[10];
+                String[] anggota = new String[11];
                 anggota[0] = rs.getString(1); // id
                 anggota[1] = rs.getString(2); // Nama
                 anggota[2] = rs.getString(3); // NIM
@@ -32,6 +32,7 @@ public class ReadAnggotaPerpus extends DataAnggota{
                 anggota[7] = rs.getString(8); // tanggal_peminjaman
                 anggota[8] = rs.getString(9); // tanggal_pengembalian
                 anggota[9] = rs.getString(10); // sisa_waktu
+                anggota[10] = rs.getString(11); // your missing field
 
                 anggotaList.add(anggota);
             }

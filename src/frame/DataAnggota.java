@@ -108,13 +108,13 @@ private void loadTableData() {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nama", "NIM", "Prodi", "Fakultas", "Status Pinjam", "Judul Buku", "Tanggal Pinjam", "Tanggal Kembali", "Sisa Waktu"
+                "ID", "Nama", "NIM", "Prodi", "Fakultas", "Status Pinjam", "Judul Buku", "Tanggal Pinjam", "Tanggal Kembali", "Sisa Waktu", "Denda Uang"
             }
         ));
         jTable1.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -150,14 +150,14 @@ private void loadTableData() {
                         .addComponent(Change, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Delette, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(964, Short.MAX_VALUE))))
+                        .addContainerGap(983, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                .addComponent(jButton1)
+                .addContainerGap(1253, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
