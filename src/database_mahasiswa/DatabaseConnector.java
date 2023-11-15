@@ -49,42 +49,6 @@ public class DatabaseConnector {
         return names;
     }
     
-    public static StudentData getStudentDataByName(String name) throws ClassNotFoundException, SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        StudentData studentData = null;
-
-        try {
-            connection = getConnection();
-
-            String selectQuery = "SELECT NIM, Fakultas, Prodi FROM anggota_perpus WHERE Nama = ?";
-            preparedStatement = connection.prepareStatement(selectQuery);
-            preparedStatement.setString(1, name);
-
-            resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                String nim = resultSet.getString("NIM");
-                String fakultas = resultSet.getString("Fakultas");
-                String prodi = resultSet.getString("Prodi");
-
-                studentData = new StudentData(nim, fakultas, prodi);
-            }
-        } finally {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
-        }
-
-        return studentData;
-    }
     
     public static boolean deleteBookByName(Connection connection, String bookName) {
         try {
