@@ -149,6 +149,11 @@ public class DeleteAgt extends javax.swing.JFrame {
         jLabel1.setText("Hapus Data Anggota");
 
         ListNama.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Yang Ingin Dihapus" }));
+        ListNama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListNamaMouseClicked(evt);
+            }
+        });
         ListNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ListNamaActionPerformed(evt);
@@ -306,11 +311,17 @@ public class DeleteAgt extends javax.swing.JFrame {
     private void ListNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListNamaActionPerformed
         // TODO add your handling code here:
         try {
-            List<String> names = DatabaseConnector.getNamesFromDatabase();
-            ListNama.removeAllItems();
-            for (String name : names) {
-                ListNama.addItem(name);
-            }
+            String selectedName = (String) ListNama.getSelectedItem();
+
+            // Fetch data from the database based on the selected name
+            // Assuming you have a method in DatabaseConnector to get data by name
+            // Update the method signature accordingly
+             mahasiswa = DatabaseConnector.getNamesFromDatabase(selectedName);
+
+            // Set the values in the text fields
+            TextNIM.setText(mahasiswa.getNIM());
+            TextFakultas.setText(mahasiswa.getFakultas());
+            TextProdi.setText(mahasiswa.getProdi());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -357,6 +368,19 @@ public class DeleteAgt extends javax.swing.JFrame {
         DataAnggota datamenu = new DataAnggota();
         datamenu.setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void ListNamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListNamaMouseClicked
+        // TODO add your handling code here:
+        try {
+            List<String> names = DatabaseConnector.getNamesFromDatabase();
+            ListNama.removeAllItems();
+            for (String name : names) {
+                ListNama.addItem(name);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_ListNamaMouseClicked
 
     /**
      * @param args the command line arguments

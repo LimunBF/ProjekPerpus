@@ -8,6 +8,13 @@ import database_mahasiswa.DatabaseConnector;
 import database_mahasiswa.ChangeAnggotaperpus;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Component;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 /**
  *
@@ -83,11 +90,17 @@ public class ChangeAnggota extends javax.swing.JFrame {
     private void ListNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListNamaActionPerformed
         // TODO add your handling code here:
         try {
-            List<String> names = DatabaseConnector.getNamesFromDatabase();
-            ListNama.removeAllItems();
-            for (String name : names) {
-                ListNama.addItem(name);
-            }
+            SwingUtilities.invokeLater(() -> {
+                try {
+                    List<String> names = DatabaseConnector.getNamesFromDatabase();
+                    ListNama.removeAllItems();
+                    for (String name : names) {
+                        ListNama.addItem(name);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            });
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
