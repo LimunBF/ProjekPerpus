@@ -4,7 +4,7 @@
  */
 package frame;
 
-import database_mahasiswa.CreateAnggota;
+import database_admin.CreateAdminCode;
 
 /**
  *
@@ -153,22 +153,22 @@ public class CreateAdmin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try {
-            String username = InputUsername.getText();
-            String password = InputPassword.getText();
-            String repassword = InputRePassword.getText();
+    try {
+        String username = InputUsername.getText();
+        String password = InputPassword.getText();
+        String repassword = InputRePassword.getText();
 
-            CreateAnggota.createDataAnggota(nama, nim, fakultas, prodi);
+        CreateAdminCode.createDataAdmin(username, password);
+        DataAnggota framedata = new DataAnggota();
+        framedata.setVisible(true);
+        dispose();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 
-            DataAnggota framedata = new DataAnggota();
-            framedata.setVisible(true);
-            dispose();
-        }   catch (Exception e) {
-            e.printStackTrace();
-        } 
-            
-        loginAdmin login = new loginAdmin();
-        login.setVisible(true);
+    loginAdmin login = new loginAdmin();
+    login.setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -188,14 +188,15 @@ public class CreateAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateAdminCode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateAdminCode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateAdminCode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateAdminCode.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
