@@ -13,10 +13,10 @@ public class CreateAnggota {
 
             String insertQuery = "INSERT INTO anggota_perpus (Nama, Nim, Fakultas, Prodi) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
-            preparedStatement.setString(2, nama);
-            preparedStatement.setString(3, nim);
-            preparedStatement.setString(4, fakultas);
-            preparedStatement.setString(5, prodi);
+            preparedStatement.setString(1, nama);
+            preparedStatement.setString(2, nim);
+            preparedStatement.setString(3, fakultas);
+            preparedStatement.setString(4, prodi);
 
             int rowCount = preparedStatement.executeUpdate();
             if (rowCount > 0) {

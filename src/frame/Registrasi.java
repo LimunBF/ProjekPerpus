@@ -124,12 +124,12 @@ public class Registrasi extends javax.swing.JFrame {
                     .addComponent(LabelNIM, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextProdi, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelProdi))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextFakultas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelFakultas, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextProdi, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelProdi))
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SubmitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,17 +146,21 @@ public class Registrasi extends javax.swing.JFrame {
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         // TODO add your handling code here:
-        String nama = TextNama.getText();
-        String nim = TextNIM.getText();
-        String prodi = TextProdi.getText();
-        String fakultas = TextFakultas.getText();
-        CreateAnggota.createDataAnggota(nama, nim, fakultas, prodi);
-        
-        DataAnggota framedata = new DataAnggota();
-        framedata.setVisible(true);
-        dispose();
-        
-        
+    try {
+            // TODO add your handling code here:
+            String nama = TextNama.getText();
+            String nim = TextNIM.getText();
+            String fakultas = TextFakultas.getText();
+            String prodi = TextProdi.getText();
+
+            CreateAnggota.createDataAnggota(nama, nim, fakultas, prodi);
+
+            DataAnggota framedata = new DataAnggota();
+            framedata.setVisible(true);
+            dispose();
+        }   catch (Exception e) {
+            e.printStackTrace();
+        }       
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
