@@ -123,6 +123,7 @@ public class DataBuku extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
         DeleteBook hapusbook = new DeleteBook();
+        hapusbook.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

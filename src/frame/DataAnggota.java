@@ -212,6 +212,7 @@ private void loadTableData() {
         // TODO add your handling code here:
         Menu back = new Menu();
         back.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeActionPerformed
