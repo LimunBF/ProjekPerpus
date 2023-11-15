@@ -179,6 +179,9 @@ private void loadTableData() {
 
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
         // TODO add your handling code here
+        dispose();
+        Registrasi menuFrame = new Registrasi();
+        menuFrame.setVisible(true);
     }//GEN-LAST:event_CreateActionPerformed
 
     private void DeletteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletteActionPerformed
@@ -199,9 +202,8 @@ private void loadTableData() {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Menu menuFrame = new Menu();
-        menuFrame.setVisible(true);
-        dispose();
+        Menu back = new Menu();
+        back.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
