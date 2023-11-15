@@ -308,6 +308,15 @@ public class DeleteAgt extends javax.swing.JFrame {
 
     private void ListNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListNamaActionPerformed
         // TODO add your handling code here:
+        try {
+            List<String> names = DatabaseConnector.getNamesFromDatabase();
+            ListNama.removeAllItems();
+            for (String name : names) {
+                ListNama.addItem(name);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_ListNamaActionPerformed
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed

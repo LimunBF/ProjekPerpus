@@ -17,8 +17,9 @@ public class DeleteAnggota {
         try {
             Connection koneksi = DatabaseConnector.getConnection();
 
-            String insertQuery = "DELETE FROM anggota_perpus (Nama, Nim, Fakultas, Prodi) VALUES (?, ?, ?, ?)";
-            PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
+            // Modify the DELETE query based on your database schema
+            String deleteQuery = "DELETE FROM anggota_perpus WHERE Nama = ? AND Nim = ? AND Fakultas = ? AND Prodi = ?";
+            PreparedStatement preparedStatement = koneksi.prepareStatement(deleteQuery);
             preparedStatement.setString(1, nama);
             preparedStatement.setString(2, nim);
             preparedStatement.setString(3, fakultas);
@@ -26,9 +27,9 @@ public class DeleteAnggota {
 
             int rowCount = preparedStatement.executeUpdate();
             if (rowCount > 0) {
-                System.out.println("Data anggota berhasil dimasukkan ke dalam database.");
+                System.out.println("Data anggota berhasil dihapus dari database.");
             } else {
-                System.out.println("Data anggota gagal dimasukkan ke dalam database.");
+                System.out.println("Data anggota tidak ditemukan atau gagal dihapus dari database.");
             }
 
             preparedStatement.close();
@@ -37,5 +38,4 @@ public class DeleteAnggota {
             System.out.println(ex.getMessage());
         }
     }
-    
 }

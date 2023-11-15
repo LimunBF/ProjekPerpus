@@ -39,6 +39,25 @@ public class DatabaseConnector {
 //        return checkifUsernameExist(connection, Username);
 //    }
 
+        public static List<String> getNamesFromDatabase() throws ClassNotFoundException, SQLException {
+        List<String> names = new ArrayList<>();
+        Connection connection = getConnection();
+
+        // Modify the SELECT query based on your database schema
+        String selectQuery = "SELECT DISTINCT Nama FROM anggota_perpus";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("Nama");
+                names.add(name);
+            }
+        }
+
+        connection.close();
+        return names;
+    }
+    
     public static boolean deleteBookByName(Connection connection, String bookName) {
         try {
             String deleteQuery = "DELETE FROM data_buku WHERE Judul_Buku =  ?";

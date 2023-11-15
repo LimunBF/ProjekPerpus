@@ -186,6 +186,9 @@ private void loadTableData() {
 
     private void DeletteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletteActionPerformed
         // TODO add your handling code here:
+        dispose();
+        DeleteAgt menudeleteagt = new DeleteAgt();
+        menudeleteagt.setVisible(true);
     }//GEN-LAST:event_DeletteActionPerformed
 
     private void GosearchbttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GosearchbttonActionPerformed
