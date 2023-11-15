@@ -4,6 +4,8 @@
  */
 package frame;
 
+import database_mahasiswa.CreateAnggota;
+
 /**
  *
  * @author Limun
@@ -57,6 +59,11 @@ public class CreateAdmin extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 18)); // NOI18N
         jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +118,26 @@ public class CreateAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            String username = InputUsername.getText();
+            String password = InputPassword.getText();
+            String repassword = InputRePassword.getText();
+
+            CreateAnggota.createDataAnggota(nama, nim, fakultas, prodi);
+
+            DataAnggota framedata = new DataAnggota();
+            framedata.setVisible(true);
+            dispose();
+        }   catch (Exception e) {
+            e.printStackTrace();
+        } 
+            
+        loginAdmin login = new loginAdmin();
+        login.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

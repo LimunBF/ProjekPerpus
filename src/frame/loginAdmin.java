@@ -194,6 +194,9 @@ public class loginAdmin extends javax.swing.JFrame {
 
     private void CreateAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAdminActionPerformed
         // TODO add your handling code here:
+        CreateAdmin create = new CreateAdmin();
+        create.setVisible(true);
+        dispose();
     }//GEN-LAST:event_CreateAdminActionPerformed
 
     /**
