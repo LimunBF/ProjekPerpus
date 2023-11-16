@@ -28,45 +28,34 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="LabelJudul" min="-2" pref="74" max="-2" attributes="0"/>
+                          <Component id="LabelPengarang" pref="102" max="32767" attributes="0"/>
+                          <Component id="LabelTahunterbit" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Back" min="-2" max="-2" attributes="0"/>
+                          <Component id="LabelPenerbit" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="LabelJudul" min="-2" pref="74" max="-2" attributes="0"/>
-                                  <Component id="LabelPengarang" pref="102" max="32767" attributes="0"/>
-                                  <Component id="LabelTahunterbit" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Back" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="61" pref="61" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="TextJudul" min="-2" pref="271" max="-2" attributes="0"/>
-                                          <Component id="TextPengarang" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="TextTahunTerbit" alignment="1" min="-2" pref="271" max="-2" attributes="0"/>
-                                          <Component id="InsertButton" alignment="1" min="-2" pref="88" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="LabelPenerbit" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="TextPenerbit" min="-2" pref="271" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
+                              <Component id="InsertButton" min="-2" pref="88" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="61" pref="61" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="TextJudul" min="-2" pref="271" max="-2" attributes="0"/>
+                                  <Component id="TextPengarang" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
+                                  <Component id="TextTahunTerbit" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
+                                  <Component id="TextPenerbit" alignment="0" min="-2" pref="271" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+              <EmptySpace pref="71" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,15 +82,15 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="LabelPenerbit" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="TextPenerbit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="LabelPenerbit" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="LabelTahunterbit" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TextTahunTerbit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="LabelTahunterbit" min="-2" max="-2" attributes="0"/>
+                          <Component id="TextTahunTerbit" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace pref="42" max="32767" attributes="0"/>
                       <Component id="InsertButton" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
               </Group>

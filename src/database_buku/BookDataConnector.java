@@ -1,6 +1,9 @@
 package database_buku;
 
+import static database_mahasiswa.DatabaseConnector.getConnection;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookDataConnector {
 
@@ -41,6 +44,23 @@ public class BookDataConnector {
             System.err.println("Error deleting book by name: " + e.getMessage());
             return false;
         }
+    }
+    
+    public static List<String> getTitleFromDatabase() throws ClassNotFoundException, SQLException {
+        List<String> booktitle = new ArrayList<>();
+        Connection connection = getConnection();
+
+        String selectQuery = "SELECT DISTINCT Judul_Buku FROM data_buku";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String Judul = resultSet.getString("Judul_Buku");
+                booktitle.add(Judul);
+            }
+        }
+        connection.close();
+        return booktitle;
     }
 
     public static int getBukuIDByNama(Connection connection, String Judul_Buku) throws SQLException {

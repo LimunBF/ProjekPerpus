@@ -322,8 +322,8 @@ public class DeleteAgt extends javax.swing.JFrame {
 
            DeleteAnggota.deleteDataAnggota(nama, nim, fakultas, prodi);
 
-           String successMessage = "Data has been successfully submitted!";
-           JOptionPane.showMessageDialog(this, successMessage, "Success", JOptionPane.INFORMATION_MESSAGE);
+           String successDeleteMessage = "Data has been successfully Deleted!";
+           JOptionPane.showMessageDialog(this, successDeleteMessage, "Delete", JOptionPane.INFORMATION_MESSAGE);
 
            Timer timer = new Timer(2000, new ActionListener() {
                @Override
