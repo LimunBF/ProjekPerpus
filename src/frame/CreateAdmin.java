@@ -191,7 +191,7 @@ public class CreateAdmin extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Elephant", 0, 20)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
         jLabel1.setText("Create Admin");
 
         LabelUsername.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N

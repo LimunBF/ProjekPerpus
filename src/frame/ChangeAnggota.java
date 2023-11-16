@@ -92,7 +92,7 @@ public class ChangeAnggota extends javax.swing.JFrame {
 
         jButton2.setText("Back");
 
-        jLabel1.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
         jLabel1.setText("Hapus Data Anggota");
 
         LabelNama.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
