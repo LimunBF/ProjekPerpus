@@ -32,7 +32,7 @@ public class ReadAnggotaPerpus extends DataAnggota {
                 anggota[7] = rs.getString(8); // tanggal_peminjaman
                 anggota[8] = rs.getString(9); // tanggal_pengembalian
                 anggota[9] = rs.getString(10); // sisa_waktu
-                anggota[10] = rs.getString(11); // your missing field
+                anggota[10] = String.valueOf(rs.getString(11)); // your missing field
 
                 anggotaList.add(anggota);
             }

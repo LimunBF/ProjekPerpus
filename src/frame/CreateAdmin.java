@@ -5,6 +5,9 @@
 package frame;
 
 import database_admin.CreateAdminCode;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -15,9 +18,12 @@ public class CreateAdmin extends javax.swing.JFrame {
     /**
      * Creates new form CreateAdmin
      */
+    private Timer passwordTimer;
+    
     public CreateAdmin() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -151,6 +157,54 @@ public class CreateAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void initComponent() {
+        // Initialize the timer with a delay of 1000 milliseconds (1 second)
+        passwordTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Clear the password field
+                InputPassword.setText("");
+                InputRePassword.setText("");
+            }
+        });
+        // Add a DocumentListener to the password field to trigger the timer
+        InputPassword.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                resetTimer();
+            }
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                resetTimer();
+            }
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                resetTimer();
+            }
+        });
+                
+        InputRePassword.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                resetTimer();
+            }
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                resetTimer();
+            }
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                resetTimer();
+            }
+        }
+        );
+    }
+    
+    private void resetTimer() {
+        // Restart the timer when the user types a new character
+        passwordTimer.restart();
+    }
+   
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     try {
@@ -162,6 +216,9 @@ public class CreateAdmin extends javax.swing.JFrame {
         DataAnggota framedata = new DataAnggota();
         framedata.setVisible(true);
         dispose();
+        
+        InputPassword.setText("");
+        InputRePassword.setText("");
     } catch (Exception e) {
         e.printStackTrace();
     }
