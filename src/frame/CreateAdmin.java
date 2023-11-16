@@ -4,10 +4,11 @@
  */
 package frame;
 
-import database_admin.CreateAdminCode;
-import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JPasswordField;
+import javax.swing.Timer;
+import database_admin.CreateAdminCode;
 
 /**
  *
@@ -15,16 +16,102 @@ import java.awt.event.ActionListener;
  */
 public class CreateAdmin extends javax.swing.JFrame {
 
+    private Timer timer;
+    private Timer timerrepw;
     /**
      * Creates new form CreateAdmin
      */
-    private Timer passwordTimer;
     
     public CreateAdmin() {
         initComponents();
+        setupListeners();
+        initializeTimer();
+        initializeTimerrepw();
     }
     
+    private void initializeTimer() {
+        // Set up a Timer to mask the password after a delay
+        int delay = 500; // 1000 milliseconds = 1 second
+        timer = new Timer(delay, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                maskPassword();
+            }
+        });
+        timer.setRepeats(false); // Set to non-repeating
+    }
+    
+    private void initializeTimerrepw() {
+        // Set up a Timer to mask the re-password after a delay
+        int delay = 500; // 1000 milliseconds = 0.5 seconds
+        timerrepw = new Timer(delay, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                maskrePassword();
+            }
+        });
+        timerrepw.setRepeats(false); // Set to non-repeating
+    }
 
+    private void setupListeners() {
+        // Add a document listener to the password field
+        InputPassword.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                // Schedule the timer when a new character is inserted
+                timer.restart();
+            }
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                // No action needed when characters are removed
+            }
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                // No action needed when attributes are changed
+            }
+        });
+
+        // Add a focus listener to the password field
+        InputPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                // Start the timer when the password field gains focus
+                timer.restart();
+            }
+        });
+        InputRePassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                // Start the timer when the password field gains focus
+                timerrepw.restart();
+            }
+        });
+    }
+
+    private void maskPassword() {
+        // Mask the password with '*' characters
+        String password = new String(InputPassword.getText());
+        StringBuilder maskedPassword = new StringBuilder();
+
+        for (int i = 0; i < password.length(); i++) {
+            maskedPassword.append('*');
+        }
+
+        // Set the masked password back to the password field
+        InputPassword.setText(maskedPassword.toString());
+    }
+    private void maskrePassword() {
+       // Mask the password with '*' characters
+       String repassword = new String(InputRePassword.getText());
+       StringBuilder maskedrePassword = new StringBuilder();
+
+       for (int i = 0; i < repassword.length(); i++) {
+           maskedrePassword.append('*');
+       }
+
+       // Set the masked password back to the re-password field
+       InputRePassword.setText(maskedrePassword.toString());
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,8 +179,18 @@ public class CreateAdmin extends javax.swing.JFrame {
         InputUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         InputPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        InputPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                InputPasswordFocusGained(evt);
+            }
+        });
 
         InputRePassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        InputRePassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                InputRePasswordFocusGained(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 18)); // NOI18N
         jButton1.setText("Submit");
@@ -156,54 +253,6 @@ public class CreateAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void initComponent() {
-        // Initialize the timer with a delay of 1000 milliseconds (1 second)
-        passwordTimer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Clear the password field
-                InputPassword.setText("");
-                InputRePassword.setText("");
-            }
-        });
-        // Add a DocumentListener to the password field to trigger the timer
-        InputPassword.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-            @Override
-            public void insertUpdate(javax.swing.event.DocumentEvent e) {
-                resetTimer();
-            }
-            @Override
-            public void removeUpdate(javax.swing.event.DocumentEvent e) {
-                resetTimer();
-            }
-            @Override
-            public void changedUpdate(javax.swing.event.DocumentEvent e) {
-                resetTimer();
-            }
-        });
-                
-        InputRePassword.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-            @Override
-            public void insertUpdate(javax.swing.event.DocumentEvent e) {
-                resetTimer();
-            }
-            @Override
-            public void removeUpdate(javax.swing.event.DocumentEvent e) {
-                resetTimer();
-            }
-            @Override
-            public void changedUpdate(javax.swing.event.DocumentEvent e) {
-                resetTimer();
-            }
-        }
-        );
-    }
-    
-    private void resetTimer() {
-        // Restart the timer when the user types a new character
-        passwordTimer.restart();
-    }
    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -217,8 +266,6 @@ public class CreateAdmin extends javax.swing.JFrame {
         framedata.setVisible(true);
         dispose();
         
-        InputPassword.setText("");
-        InputRePassword.setText("");
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -227,6 +274,14 @@ public class CreateAdmin extends javax.swing.JFrame {
     login.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void InputPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_InputPasswordFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputPasswordFocusGained
+
+    private void InputRePasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_InputRePasswordFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputRePasswordFocusGained
 
     /**
      * @param args the command line arguments
