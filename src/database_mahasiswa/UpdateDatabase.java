@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+import database_mahasiswa.DatabaseConnector;
+import java.util.concurrent.TimeUnit;
 
 public class UpdateDatabase {
 
@@ -96,6 +98,57 @@ public class UpdateDatabase {
             }
 
             // Additional logic if needed
+        }
+    }
+    
+    public static void updateFine(String Nama) throws SQLException {
+        Connection connection = DriverManager.getConnection(url, username, password);
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // Fetch necessary data from the database
+            String fetchQuery = "SELECT tanggal_pengembalian FROM anggota_perpus WHERE Nama = ?";
+            preparedStatement = connection.prepareStatement(fetchQuery);
+            preparedStatement.setString(1, Nama);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                // Get the return date from the database
+                Date returnDate = resultSet.getDate("tanggal_pengembalian");
+
+                // Calculate the difference between the current date and return date
+                long differenceInMillis = System.currentTimeMillis() - returnDate.getTime();
+                long differenceInDays = TimeUnit.MILLISECONDS.toDays(differenceInMillis);
+
+                // Fine rate (5k per day)
+                int fineRate = 5000;
+
+                // Calculate the fine
+                int fine = (int) (differenceInDays * fineRate);
+
+                // Update the fine in the database
+                String updateQuery = "UPDATE anggota_perpus SET denda = ? WHERE Nama = ?";
+                preparedStatement = connection.prepareStatement(updateQuery);
+                preparedStatement.setInt(1, fine);
+                preparedStatement.setString(2, Nama);
+                preparedStatement.executeUpdate();
+            }
+        } finally {
+            // Close resources
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(); // Log or handle the exception according to your application's requirements
+            }
         }
     }
 }
