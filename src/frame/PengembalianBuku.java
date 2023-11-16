@@ -8,6 +8,8 @@ package frame;
  *
  * @author Asus TUF
  */
+import database_mahasiswa.UpdateDatabase;
+
 public class PengembalianBuku extends javax.swing.JFrame {
 
     /**
@@ -35,13 +37,13 @@ public class PengembalianBuku extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        LabelJudulBuku = new javax.swing.JLabel();
+        LabelNamaPeminjam = new javax.swing.JLabel();
+        TextFieldJudulBuku = new javax.swing.JTextField();
+        TextFieldNamaPeminjam = new javax.swing.JTextField();
+        SubmitButton = new javax.swing.JButton();
+        LabelPengembalianBuku = new javax.swing.JLabel();
+        BackButton = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -113,24 +115,24 @@ public class PengembalianBuku extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("JUDUL BUKU");
+        LabelJudulBuku.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        LabelJudulBuku.setText("JUDUL BUKU");
 
-        jLabel4.setText("NAMA PEMINJAM");
+        LabelNamaPeminjam.setText("NAMA PEMINJAM");
 
-        jButton1.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jButton1.setText("SUBMIT");
-        jButton1.setActionCommand("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SubmitButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
+        SubmitButton.setText("SUBMIT");
+        SubmitButton.setActionCommand("Submit");
+        SubmitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SubmitButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("STZhongsong", 1, 24)); // NOI18N
-        jLabel1.setText("PENGEMBALIAN BUKU");
+        LabelPengembalianBuku.setFont(new java.awt.Font("STZhongsong", 1, 24)); // NOI18N
+        LabelPengembalianBuku.setText("PENGEMBALIAN BUKU");
 
-        jButton7.setText("BACK");
+        BackButton.setText("BACK");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -141,40 +143,40 @@ public class PengembalianBuku extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(231, 231, 231)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                            .addComponent(LabelJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LabelNamaPeminjam))
                         .addGap(56, 56, 56)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(TextFieldNamaPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextFieldJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(276, 276, 276)
-                        .addComponent(jLabel1))
+                        .addComponent(LabelPengembalianBuku))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(jButton7)))
+                        .addComponent(BackButton)))
                 .addGap(254, 254, 254))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton1)
+                .addComponent(SubmitButton)
                 .addGap(382, 382, 382))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LabelPengembalianBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(53, 53, 53)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TextFieldJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(TextFieldNamaPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelNamaPeminjam))
                 .addGap(45, 45, 45)
-                .addComponent(jButton1)
+                .addComponent(SubmitButton)
                 .addGap(45, 45, 45)
-                .addComponent(jButton7)
+                .addComponent(BackButton)
                 .addGap(26, 26, 26))
         );
 
@@ -196,9 +198,23 @@ public class PengembalianBuku extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        try {
+            String judulBuku = TextFieldJudulBuku.getText();
+            String namaPeminjam = TextFieldNamaPeminjam.getText();
+
+            // Perform the database update based on the returned book
+            UpdateDatabase.updatePengembalianBuku(judulBuku, namaPeminjam);
+
+            // Add any additional logic or navigation as needed
+
+        } catch (Exception e) {
+            e.printStackTrace(); // Log or handle the exception according to your application's requirements
+        }
+        DataAnggota framedata = new DataAnggota();
+        framedata.setVisible(true);
+    }//GEN-LAST:event_SubmitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,21 +252,21 @@ public class PengembalianBuku extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BackButton;
+    private javax.swing.JLabel LabelJudulBuku;
+    private javax.swing.JLabel LabelNamaPeminjam;
+    private javax.swing.JLabel LabelPengembalianBuku;
+    private javax.swing.JButton SubmitButton;
+    private javax.swing.JTextField TextFieldJudulBuku;
+    private javax.swing.JTextField TextFieldNamaPeminjam;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

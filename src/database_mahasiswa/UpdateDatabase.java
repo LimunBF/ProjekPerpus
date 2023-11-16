@@ -57,5 +57,18 @@ public class UpdateDatabase {
             e.printStackTrace();
         }
     }
+    
+     public static void updatePengembalianBuku(String judulBuku, String namaPeminjam) {
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            String updatePengembalianQuery = "UPDATE anggota_perpus SET stats_peminjaman = 'NO', tanggal_peminjaman = null, sisa_waktu = null WHERE buku_yg_dipinjam = ? AND Nama = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(updatePengembalianQuery)) {
+                preparedStatement.setString(1, judulBuku);
+                preparedStatement.setString(2, namaPeminjam);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
