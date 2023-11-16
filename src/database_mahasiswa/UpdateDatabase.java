@@ -8,11 +8,7 @@ package database_mahasiswa;
  *
  * @author Limun
  */
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.Calendar;
 import java.util.Date;
 import database_mahasiswa.DatabaseConnector;
@@ -101,23 +97,23 @@ public class UpdateDatabase {
         }
     }
     
-    public static void updateFine(String Nama) throws SQLException {
+    public static void updateFine(String username) throws SQLException {
         Connection connection = DriverManager.getConnection(url, username, password);
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
 
         try {
             // Fetch necessary data from the database
-            String fetchQuery = "SELECT tanggal_pengembalian FROM anggota_perpus WHERE Nama = ?";
+            String fetchQuery = "SELECT tanggal_pengembalian, sisa_waktu FROM anggota_perpus WHERE username = ?";
             preparedStatement = connection.prepareStatement(fetchQuery);
-            preparedStatement.setString(1, Nama);
-            resultSet = preparedStatement.executeQuery();
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                // Get the return date from the database
+                // Get the return date and remaining time from the database
                 Date returnDate = resultSet.getDate("tanggal_pengembalian");
+                int remainingTime = resultSet.getInt("sisa_waktu");
 
-                // Calculate the difference between the current date and return date
+                // Calculate the difference between current date and return date
                 long differenceInMillis = System.currentTimeMillis() - returnDate.getTime();
                 long differenceInDays = TimeUnit.MILLISECONDS.toDays(differenceInMillis);
 
@@ -127,29 +123,26 @@ public class UpdateDatabase {
                 // Calculate the fine
                 int fine = (int) (differenceInDays * fineRate);
 
-                // Update the fine in the database
-                String updateQuery = "UPDATE anggota_perpus SET denda = ? WHERE Nama = ?";
+                // Update the fine and remaining time in the database
+                String updateQuery = "UPDATE anggota_perpus SET denda = ?, sisa_waktu = ? WHERE username = ?";
                 preparedStatement = connection.prepareStatement(updateQuery);
                 preparedStatement.setInt(1, fine);
-                preparedStatement.setString(2, Nama);
+
+                // Update remaining time (subtracting the overdue days)
+                int updatedRemainingTime = remainingTime - (int) differenceInDays;
+                preparedStatement.setInt(2, updatedRemainingTime);
+
+                preparedStatement.setString(3, username);
                 preparedStatement.executeUpdate();
             }
         } finally {
             // Close resources
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace(); // Log or handle the exception according to your application's requirements
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
             }
         }
     }
 }
-

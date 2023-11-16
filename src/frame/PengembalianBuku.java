@@ -237,7 +237,10 @@ public class PengembalianBuku extends javax.swing.JFrame {
 
             // Perform the database update based on the returned book
             UpdateDatabase.updatePengembalianBuku(judulBuku, namaPeminjam);
-            UpdateDatabase.updateStatusPinjam(judulBuku, "NO"); 
+            UpdateDatabase.updateStatusPinjam(judulBuku, "NO");
+
+            // Calculate and update fine
+            UpdateDatabase.updateFine(namaPeminjam);
 
             // Add any additional logic or navigation as needed
 
