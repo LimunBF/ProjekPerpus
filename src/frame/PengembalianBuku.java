@@ -124,9 +124,10 @@ public class PengembalianBuku extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
 
-        LabelJudulBuku.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        LabelJudulBuku.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         LabelJudulBuku.setText("JUDUL BUKU");
 
+        LabelNamaPeminjam.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         LabelNamaPeminjam.setText("NAMA PEMINJAM");
 
         SubmitButton.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
@@ -180,9 +181,9 @@ public class PengembalianBuku extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(231, 231, 231)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LabelNamaPeminjam))
-                        .addGap(56, 56, 56)
+                            .addComponent(LabelNamaPeminjam)
+                            .addComponent(LabelJudulBuku))
+                        .addGap(41, 41, 41)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ListNama, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ListJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))

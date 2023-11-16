@@ -207,10 +207,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="231" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="LabelJudulBuku" min="-2" pref="99" max="-2" attributes="0"/>
                               <Component id="LabelNamaPeminjam" min="-2" max="-2" attributes="0"/>
+                              <Component id="LabelJudulBuku" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="ListNama" min="-2" pref="289" max="-2" attributes="0"/>
                               <Component id="ListJudulBuku" min="-2" pref="289" max="-2" attributes="0"/>
@@ -253,13 +253,16 @@
         <Component class="javax.swing.JLabel" name="LabelJudulBuku">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/>
+              <Font name="Serif" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="JUDUL BUKU"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="LabelNamaPeminjam">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Serif" size="18" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="NAMA PEMINJAM"/>
           </Properties>
         </Component>

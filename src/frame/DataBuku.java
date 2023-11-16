@@ -65,7 +65,7 @@ public class DataBuku extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
         HomeBTTN.setBackground(new java.awt.Color(0, 204, 204));
         HomeBTTN.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -78,7 +78,7 @@ public class DataBuku extends javax.swing.JFrame {
             }
         });
 
-        PinjamButton.setBackground(new java.awt.Color(0, 204, 204));
+        PinjamButton.setBackground(new java.awt.Color(0, 153, 153));
         PinjamButton.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         PinjamButton.setText("PEMINJAMAN BUKU");
         PinjamButton.setBorder(null);
@@ -95,7 +95,7 @@ public class DataBuku extends javax.swing.JFrame {
         KembaliButton.setBorder(null);
         KembaliButton.setBorderPainted(false);
 
-        DataButton.setBackground(new java.awt.Color(0, 153, 153));
+        DataButton.setBackground(new java.awt.Color(0, 102, 102));
         DataButton.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         DataButton.setForeground(new java.awt.Color(255, 255, 255));
         DataButton.setText("DATA BUKU");
@@ -147,6 +147,7 @@ public class DataBuku extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
 
+        jButton1.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
         jButton1.setText("Insert");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +155,7 @@ public class DataBuku extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
         jButton3.setText("Delete");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
