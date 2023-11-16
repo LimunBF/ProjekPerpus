@@ -6,6 +6,7 @@ package frame;
 import database_mahasiswa.UpdateDatabase;
 import database_mahasiswa.DatabaseConnector;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -38,8 +39,6 @@ public class PinjamBuku extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         SubmitButton = new javax.swing.JButton();
-        TextJudul = new javax.swing.JTextField();
-        TextPeminjam = new javax.swing.JTextField();
         LabelJudul = new javax.swing.JLabel();
         LabelNama = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -48,6 +47,8 @@ public class PinjamBuku extends javax.swing.JFrame {
         StatusPeminjam = new javax.swing.JLabel();
         NoButton = new javax.swing.JRadioButton();
         YesButtn = new javax.swing.JRadioButton();
+        ListJudulBuku = new javax.swing.JComboBox<>();
+        ListNama = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -124,8 +125,6 @@ public class PinjamBuku extends javax.swing.JFrame {
             }
         });
 
-        TextPeminjam.setToolTipText("");
-
         LabelJudul.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         LabelJudul.setText("Judul Buku");
 
@@ -157,6 +156,28 @@ public class PinjamBuku extends javax.swing.JFrame {
             }
         });
 
+        ListJudulBuku.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListJudulBukuMouseClicked(evt);
+            }
+        });
+        ListJudulBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListJudulBukuActionPerformed(evt);
+            }
+        });
+
+        ListNama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListNamaMouseClicked(evt);
+            }
+        });
+        ListNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListNamaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -181,16 +202,16 @@ public class PinjamBuku extends javax.swing.JFrame {
                     .addComponent(StatusPeminjam))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextNIM, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(122, 122, 122)
                         .addComponent(YesButtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(NoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(NoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TextNIM, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                            .addComponent(ListJudulBuku, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ListNama, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -200,12 +221,12 @@ public class PinjamBuku extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextJudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelJudul))
+                    .addComponent(LabelJudul)
+                    .addComponent(ListJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelNama))
+                    .addComponent(LabelNama)
+                    .addComponent(ListNama, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelNIM)
@@ -215,7 +236,7 @@ public class PinjamBuku extends javax.swing.JFrame {
                     .addComponent(StatusPeminjam)
                     .addComponent(NoButton)
                     .addComponent(YesButtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SubmitButton)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -243,16 +264,16 @@ public class PinjamBuku extends javax.swing.JFrame {
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         // TODO add your handling code here:
         try {
-            String judulBuku = TextJudul.getText();
-            String peminjam = TextPeminjam.getText();
+        // Assuming you have a method to get the selected status from the radio buttons
+            String statusPeminjam = getStatusPeminjam();
+
+            // Get the selected book title, borrower name, and NIM
+            String judulBuku = ListJudulBuku.getSelectedItem().toString();
+            String peminjam = ListNama.getSelectedItem().toString();
             String nimPeminjam = TextNIM.getText();
 
-            // Assuming you have a method to get the selected status from the radio buttons
-            String statusPeminjam = getStatusPeminjam();
-            
             // Get the record ID
             int recordId = DatabaseConnector.getRecordId(judulBuku, peminjam, nimPeminjam);
-
 
             // Perform the database update based on the status
             if ("YES".equals(statusPeminjam) && recordId != -1) {
@@ -265,7 +286,7 @@ public class PinjamBuku extends javax.swing.JFrame {
             framedata.setVisible(true);
             dispose();
 
-        } catch (ClassNotFoundException | SQLException e ) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_SubmitButtonActionPerformed
@@ -283,6 +304,59 @@ public class PinjamBuku extends javax.swing.JFrame {
         // TODO add your handling code here:
         YesButtn.setSelected(!NoButton.isSelected());
     }//GEN-LAST:event_NoButtonActionPerformed
+
+    private void ListJudulBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListJudulBukuMouseClicked
+        // TODO add your handling code here:
+        try {
+            List<String> title = DatabaseConnector.getsTitleFromDatabase();
+            ListJudulBuku.removeAllItems();
+            for (String booktitle : title) {
+                ListJudulBuku.addItem(booktitle);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_ListJudulBukuMouseClicked
+
+    private void ListJudulBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListJudulBukuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ListJudulBukuActionPerformed
+
+    private void ListNamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListNamaMouseClicked
+        // TODO add your handling code here:
+        try {
+            List<String> names = DatabaseConnector.getNamesFromDatabase();
+            ListNama.removeAllItems();
+            for (String name : names) {
+                ListNama.addItem(name);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_ListNamaMouseClicked
+
+    private void ListNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListNamaActionPerformed
+        try {
+            String selectedName = ListNama.getSelectedItem().toString();
+
+            // Assuming getNIMFromDatabase returns a List<String>
+            List<String> nimList = DatabaseConnector.getNIMFromDatabase(selectedName);
+
+            // Check if the list is not empty before getting the first element
+            if (!nimList.isEmpty()) {
+                String nim = nimList.get(0);
+
+                // Set the retrieved NIM to TextNIM
+                TextNIM.setText(nim);
+            } else {
+                // Handle the case where no NIM is found for the selected name
+                // You can set a default value or show an error message
+                TextNIM.setText("NIM not found");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_ListNamaActionPerformed
 
     private String getStatusPeminjam() {
         if (YesButtn.isSelected()) {
@@ -330,12 +404,12 @@ public class PinjamBuku extends javax.swing.JFrame {
     private javax.swing.JLabel LabelJudul;
     private javax.swing.JLabel LabelNIM;
     private javax.swing.JLabel LabelNama;
+    private javax.swing.JComboBox<String> ListJudulBuku;
+    private javax.swing.JComboBox<String> ListNama;
     private javax.swing.JRadioButton NoButton;
     private javax.swing.JLabel StatusPeminjam;
     private javax.swing.JButton SubmitButton;
-    private javax.swing.JTextField TextJudul;
     private javax.swing.JTextField TextNIM;
-    private javax.swing.JTextField TextPeminjam;
     private javax.swing.JRadioButton YesButtn;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

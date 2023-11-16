@@ -49,21 +49,43 @@ public class DatabaseConnector {
         connection.close();
         return names;
     }
-    public static List<String> getNIMFromDatabase(String name) throws ClassNotFoundException, SQLException {
-        List<String> nim = new ArrayList<>();
+    
+    public static List<String> getsTitleFromDatabase() throws ClassNotFoundException, SQLException {
+        List<String> title = new ArrayList<>();
         Connection connection = getConnection();
 
-        String selectQuery = "SELECT DISTINCT NIM FROM anggota_perpus WHERE Nama = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+        String selectQuery = "SELECT DISTINCT Judul_Buku FROM data_buku";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String booktitle = resultSet.getString("Judul_Buku");
+                title.add(booktitle);
+            }
+        }
+        connection.close();
+        return title;
+    }
+    
+    public static List<String> getNIMFromDatabase(String name) throws ClassNotFoundException, SQLException {
+        List<String> nim = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT DISTINCT NIM FROM anggota_perpus WHERE Nama = ?")) {
+
             preparedStatement.setString(1, name);
+
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     String nims = resultSet.getString("NIM");
                     nim.add(nims);
                 }
             }
+        } catch (SQLException e) {
+            // Log the exception or handle it according to your application's requirements
+            throw e; // Rethrow the exception or return a meaningful result
         }
-        connection.close();
+
         return nim;
     }
 
@@ -121,8 +143,8 @@ public class DatabaseConnector {
         }
     }
     
-    public static int getRecordId(String judulBuku, String peminjam, String nimPeminjam) throws SQLException, ClassNotFoundException {
-        try (Connection connection = getConnection()) {
+    public static int getRecordId(String judulBuku, String peminjam, String nimPeminjam) throws SQLException {
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
             String query = "SELECT id FROM anggota_perpus WHERE buku_yg_dipinjam = ? AND Nama = ? AND NIM = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setString(1, judulBuku);

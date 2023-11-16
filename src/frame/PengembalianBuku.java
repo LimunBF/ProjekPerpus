@@ -9,6 +9,10 @@ package frame;
  * @author Asus TUF
  */
 import database_mahasiswa.UpdateDatabase;
+import database_mahasiswa.DatabaseConnector;
+import java.sql.SQLException;
+import java.util.List;
+import javax.swing.SwingWorker;
 
 public class PengembalianBuku extends javax.swing.JFrame {
 
@@ -39,11 +43,11 @@ public class PengembalianBuku extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         LabelJudulBuku = new javax.swing.JLabel();
         LabelNamaPeminjam = new javax.swing.JLabel();
-        TextFieldJudulBuku = new javax.swing.JTextField();
-        TextFieldNamaPeminjam = new javax.swing.JTextField();
         SubmitButton = new javax.swing.JButton();
         LabelPengembalianBuku = new javax.swing.JLabel();
         BackButton = new javax.swing.JButton();
+        ListNama = new javax.swing.JComboBox<>();
+        ListJudulBuku = new javax.swing.JComboBox<>();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -85,6 +89,11 @@ public class PengembalianBuku extends javax.swing.JFrame {
         jButton6.setText("DATA ANGGOTA");
         jButton6.setBorder(null);
         jButton6.setBorderPainted(false);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,6 +143,28 @@ public class PengembalianBuku extends javax.swing.JFrame {
 
         BackButton.setText("BACK");
 
+        ListNama.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListNamaMouseClicked(evt);
+            }
+        });
+        ListNama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListNamaActionPerformed(evt);
+            }
+        });
+
+        ListJudulBuku.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ListJudulBukuMouseClicked(evt);
+            }
+        });
+        ListJudulBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListJudulBukuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -141,41 +172,41 @@ public class PengembalianBuku extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(276, 276, 276)
+                        .addComponent(LabelPengembalianBuku))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(BackButton))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(231, 231, 231)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(LabelJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LabelNamaPeminjam))
                         .addGap(56, 56, 56)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TextFieldNamaPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TextFieldJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ListNama, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ListJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(276, 276, 276)
-                        .addComponent(LabelPengembalianBuku))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(BackButton)))
-                .addGap(254, 254, 254))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(SubmitButton)
-                .addGap(382, 382, 382))
+                        .addGap(339, 339, 339)
+                        .addComponent(SubmitButton)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(LabelPengembalianBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                    .addComponent(LabelJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ListJudulBuku, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TextFieldNamaPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelNamaPeminjam))
-                .addGap(45, 45, 45)
+                    .addComponent(LabelNamaPeminjam)
+                    .addComponent(ListNama, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
                 .addComponent(SubmitButton)
-                .addGap(45, 45, 45)
+                .addGap(19, 19, 19)
                 .addComponent(BackButton)
                 .addGap(26, 26, 26))
         );
@@ -201,20 +232,81 @@ public class PengembalianBuku extends javax.swing.JFrame {
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         // TODO add your handling code here:
         try {
-            String judulBuku = TextFieldJudulBuku.getText();
-            String namaPeminjam = TextFieldNamaPeminjam.getText();
+            String judulBuku = (String) ListJudulBuku.getSelectedItem();
+            String namaPeminjam = (String) ListNama.getSelectedItem();
 
             // Perform the database update based on the returned book
             UpdateDatabase.updatePengembalianBuku(judulBuku, namaPeminjam);
+            UpdateDatabase.updateStatusPinjam(judulBuku, "NO"); 
 
             // Add any additional logic or navigation as needed
 
-        } catch (Exception e) {
-            e.printStackTrace(); // Log or handle the exception according to your application's requirements
+        } catch (SQLException e) {
+            // Handle specific SQLExceptions here, log or display an error message
+            e.printStackTrace();
         }
-        DataAnggota framedata = new DataAnggota();
-        framedata.setVisible(true);
+
+        // Use SwingWorker for database operations in the background
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                // Perform database operations in the background
+                // This is important to avoid freezing the UI
+                // You can update UI components in the process() method
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                // This method is called on the Event Dispatch Thread when doInBackground is complete
+                DataAnggota framedata = new DataAnggota();
+                framedata.setVisible(true);
+            }
+        };
+
+        worker.execute();
+
     }//GEN-LAST:event_SubmitButtonActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        DataAnggota frame = new DataAnggota();
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void ListNamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListNamaMouseClicked
+        // TODO add your handling code here:
+        try {
+            List<String> names = DatabaseConnector.getNamesFromDatabase();
+            ListNama.removeAllItems();
+            for (String name : names) {
+                ListNama.addItem(name);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_ListNamaMouseClicked
+
+    private void ListNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListNamaActionPerformed
+
+    }//GEN-LAST:event_ListNamaActionPerformed
+
+    private void ListJudulBukuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListJudulBukuMouseClicked
+        // TODO add your handling code here:
+        try {
+            List<String> title = DatabaseConnector.getsTitleFromDatabase();
+            ListJudulBuku.removeAllItems();
+            for (String booktitle : title) {
+                ListJudulBuku.addItem(booktitle);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_ListJudulBukuMouseClicked
+
+    private void ListJudulBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListJudulBukuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ListJudulBukuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,9 +348,9 @@ public class PengembalianBuku extends javax.swing.JFrame {
     private javax.swing.JLabel LabelJudulBuku;
     private javax.swing.JLabel LabelNamaPeminjam;
     private javax.swing.JLabel LabelPengembalianBuku;
+    private javax.swing.JComboBox<String> ListJudulBuku;
+    private javax.swing.JComboBox<String> ListNama;
     private javax.swing.JButton SubmitButton;
-    private javax.swing.JTextField TextFieldJudulBuku;
-    private javax.swing.JTextField TextFieldNamaPeminjam;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

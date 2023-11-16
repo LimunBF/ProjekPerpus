@@ -33,6 +33,18 @@ public class UpdateDatabase {
             e.printStackTrace();
         }
     }
+    
+    public static void updateStatsPengembalian(int recordId) {
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            String updateStatsQuery = "UPDATE anggota_perpus SET stats_peminjaman = 'NO' WHERE id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(updateStatsQuery)) {
+                preparedStatement.setInt(1, recordId);
+                preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void updateTanggalPeminjamanAndSisaWaktu(int recordId) {
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
@@ -58,16 +70,32 @@ public class UpdateDatabase {
         }
     }
     
-     public static void updatePengembalianBuku(String judulBuku, String namaPeminjam) {
+    public static void updatePengembalianBuku(String judulBuku, String namaPeminjam) throws SQLException {
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            String updatePengembalianQuery = "UPDATE anggota_perpus SET stats_peminjaman = 'NO', tanggal_peminjaman = null, sisa_waktu = null WHERE buku_yg_dipinjam = ? AND Nama = ?";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(updatePengembalianQuery)) {
-                preparedStatement.setString(1, judulBuku);
-                preparedStatement.setString(2, namaPeminjam);
-                preparedStatement.executeUpdate();
+            // Your update logic for returning a book
+            // For example:
+            String updateAnggotaQuery = "UPDATE anggota_perpus SET status_peminjaman = 'NO' WHERE Nama = ? AND status_peminjaman = 'YES'";
+            try (PreparedStatement preparedStatementAnggota = connection.prepareStatement(updateAnggotaQuery)) {
+                preparedStatementAnggota.setString(1, namaPeminjam);
+                preparedStatementAnggota.executeUpdate();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+            // Additional logic if needed
+        }
+    }
+
+    public static void updateStatusPinjam(String judulBuku, String newStatus) throws SQLException {
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            // Your update logic for updating the status of borrowing
+            // For example:
+            String updateBukuQuery = "UPDATE data_buku SET status_pinjam = ? WHERE judul = ? AND status_pinjam = 'YES'";
+            try (PreparedStatement preparedStatementBuku = connection.prepareStatement(updateBukuQuery)) {
+                preparedStatementBuku.setString(1, newStatus);
+                preparedStatementBuku.setString(2, judulBuku);
+                preparedStatementBuku.executeUpdate();
+            }
+
+            // Additional logic if needed
         }
     }
 }
