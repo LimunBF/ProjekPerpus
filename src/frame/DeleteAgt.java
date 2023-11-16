@@ -309,7 +309,30 @@ public class DeleteAgt extends javax.swing.JFrame {
     }//GEN-LAST:event_TextProdiFocusLost
 
     private void ListNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListNamaActionPerformed
-        // TODO add your handling code here:
+    String selectedName = (String) ListNama.getSelectedItem();
+
+       // Fetch data from the database based on the selected name
+       try {
+           // Replace the following lines with your database retrieval logic
+           List<String> nimList = DatabaseConnector.getNIMFromDatabase(selectedName);
+           List<String> fakultasList = DatabaseConnector.getFakultasFromDatabase(selectedName);
+           List<String> prodiList = DatabaseConnector.getProdiFromDatabase(selectedName);
+
+           // Check if the lists are not empty before setting the text
+           if (!nimList.isEmpty()) {
+               TextNIM.setText(nimList.get(0)); // Assuming there's only one NIM for a given name
+           }
+
+           if (!fakultasList.isEmpty()) {
+               TextFakultas.setText(fakultasList.get(0)); // Assuming there's only one Fakultas for a given name
+           }
+
+           if (!prodiList.isEmpty()) {
+               TextProdi.setText(prodiList.get(0)); // Assuming there's only one Prodi for a given name
+           }
+       } catch (Exception e) {
+           System.out.println(e.getMessage());
+       }
     }//GEN-LAST:event_ListNamaActionPerformed
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
@@ -367,6 +390,37 @@ public class DeleteAgt extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ListNamaMouseClicked
 
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DeleteBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DeleteBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DeleteBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DeleteBook.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new DeleteAgt().setVisible(true);
+            }
+        });
+    }
     /**
      * @param args the command line arguments
      */

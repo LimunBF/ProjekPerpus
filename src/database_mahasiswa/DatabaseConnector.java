@@ -48,6 +48,59 @@ public class DatabaseConnector {
         connection.close();
         return names;
     }
+    public static List<String> getNIMFromDatabase(String name) throws ClassNotFoundException, SQLException {
+        List<String> nim = new ArrayList<>();
+        Connection connection = getConnection();
+
+        String selectQuery = "SELECT DISTINCT NIM FROM anggota_perpus WHERE Nama = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+            preparedStatement.setString(1, name);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String nims = resultSet.getString("NIM");
+                    nim.add(nims);
+                }
+            }
+        }
+        connection.close();
+        return nim;
+    }
+
+    public static List<String> getFakultasFromDatabase(String name) throws ClassNotFoundException, SQLException {
+        List<String> fakultas = new ArrayList<>();
+        Connection connection = getConnection();
+
+        String selectQuery = "SELECT DISTINCT Fakultas FROM anggota_perpus WHERE Nama = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+            preparedStatement.setString(1, name);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String fakulta = resultSet.getString("Fakultas");
+                    fakultas.add(fakulta);
+                }
+            }
+        }
+        connection.close();
+        return fakultas;
+    }
+
+    public static List<String> getProdiFromDatabase(String name) throws ClassNotFoundException, SQLException {
+        List<String> prodis = new ArrayList<>();
+        Connection connection = getConnection();
+
+        String selectQuery = "SELECT DISTINCT Prodi FROM anggota_perpus WHERE Nama = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectQuery)) {
+            preparedStatement.setString(1, name);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String prodi = resultSet.getString("Prodi");
+                    prodis.add(prodi);
+                }
+            }
+        }
+        connection.close();
+        return prodis;
+    }
     
     
     public static boolean deleteBookByName(Connection connection, String bookName) {
