@@ -4,30 +4,35 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ReadBook {
-    private static void readBookData(Scanner scanner) {
+    public static List<String[]> readDataBuku(Scanner scanner) {
+        List<String[]> datalist = new ArrayList<>();
+
         try {
             Connection koneksi = BookDataConnector.getConnection();
             Statement st = koneksi.createStatement();
-            String query = " select *from data_buku";
+            String query = "SELECT * FROM data_buku";
             ResultSet rs = st.executeQuery(query);
-            System.out.println("--------------------------------------------");
-            System.out.println("[DATA BUKU]");
+
             while (rs.next()) {
-                String id = rs.getString(1);
-                String judulbuku = rs.getString(2);
-                String pengarang = rs.getString(3);
-                String pengerbit = rs.getString(4);
-                String tahunterbit = rs.getString(5);
-                String output = id + " - " + judulbuku + " - " + pengarang + " - " + pengerbit+ " - "+ tahunterbit;
-                System.out.println(output);
+                String[] anggotabuku = new String[5];
+                anggotabuku[0] = rs.getString(1); // id
+                anggotabuku[1] = rs.getString(2); // Nama
+                anggotabuku[2] = rs.getString(3); // Pengarang
+                anggotabuku[3] = rs.getString(4); // Penerbit
+                anggotabuku[4] = rs.getString(5); // Tahun Terbit
+
+                datalist.add(anggotabuku);
             }
             st.close();
             koneksi.close();
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        return datalist;
     }
 }

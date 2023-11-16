@@ -22,22 +22,9 @@ public class BookDataConnector {
         return count > 0;
     }
 
-//        public static boolean checkifbooknameExist(Connection connection, String Judul_Buku) throws SQLException{
-//        String checkQuery = "SELECT COUNT(*) FROM data_buku WHERE Judul_Buku = ?";
-//        PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
-//        checkStatement.setString(1, Judul_Buku);
-//        ResultSet resultSet = checkStatement.executeQuery();
-//        resultSet.next();
-//        int count = resultSet.getInt(1);
-//        return count > 0;
-//    }
-
     public static boolean doesIDBukuExist(Connection connection, int id) throws SQLException {
         return checkIfIdBukuExists(connection, id);
     }
-//    public static boolean doesbookexist(Connection connection, String Judul_Buku) throws SQLException{
-//        return checkifbooknameExist(connection, Judul_Buku);
-//    }
 
     public static boolean deleteBookByName(Connection connection, String bookName) {
         try {

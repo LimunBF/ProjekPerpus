@@ -31,21 +31,21 @@ public class DataAnggota extends javax.swing.JFrame {
         loadTableData();
     }
     
-private void loadTableData() {
-    try {
-        List<String[]> anggotaList = ReadAnggotaPerpus.readAnggotaPerpus(new Scanner(System.in));
+    private void loadTableData() {
+        try {
+            List<String[]> anggotaList = ReadAnggotaPerpus.readAnggotaPerpus(new Scanner(System.in));
 
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // Clear existing data
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0); // Clear existing data
 
-        for (String[] anggota : anggotaList) {
-            // Add the data to the table model
-            model.addRow(anggota);
+            for (String[] anggota : anggotaList) {
+                // Add the data to the table model
+                model.addRow(anggota);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
-    } catch (Exception ex) {
-        System.out.println(ex.getMessage());
     }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
