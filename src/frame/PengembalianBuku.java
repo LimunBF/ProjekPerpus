@@ -83,6 +83,11 @@ public class PengembalianBuku extends javax.swing.JFrame {
         jButton5.setText("DATA BUKU");
         jButton5.setBorder(null);
         jButton5.setBorderPainted(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(0, 204, 204));
         jButton6.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -311,6 +316,13 @@ public class PengembalianBuku extends javax.swing.JFrame {
     private void ListJudulBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListJudulBukuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ListJudulBukuActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        DataBuku DataBuku = new DataBuku();
+        DataBuku.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

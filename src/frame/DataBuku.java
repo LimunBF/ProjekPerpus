@@ -94,6 +94,11 @@ public class DataBuku extends javax.swing.JFrame {
         KembaliButton.setText("PENGEMBALIAN BUKU");
         KembaliButton.setBorder(null);
         KembaliButton.setBorderPainted(false);
+        KembaliButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KembaliButtonActionPerformed(evt);
+            }
+        });
 
         DataButton.setBackground(new java.awt.Color(0, 102, 102));
         DataButton.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -279,6 +284,9 @@ public class DataBuku extends javax.swing.JFrame {
 
     private void PinjamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PinjamButtonActionPerformed
         // TODO add your handling code here:
+        PinjamBuku pinjam = new PinjamBuku();
+        pinjam.setVisible(true);
+        dispose();
     }//GEN-LAST:event_PinjamButtonActionPerformed
 
     private void DataAnggotaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataAnggotaButtonActionPerformed
@@ -292,6 +300,13 @@ public class DataBuku extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_HomeBTTNActionPerformed
+
+    private void KembaliButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KembaliButtonActionPerformed
+        // TODO add your handling code here:
+        PinjamBuku pinjam = new PinjamBuku();
+        pinjam.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_KembaliButtonActionPerformed
 
     /**
      * @param args the command line arguments
