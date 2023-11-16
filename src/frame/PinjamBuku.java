@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package frame;
+import database_mahasiswa.UpdateDatabase;
+import database_mahasiswa.DatabaseConnector;
+import java.sql.SQLException;
 
 /**
  *
@@ -34,7 +37,7 @@ public class PinjamBuku extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        SubmitButton = new javax.swing.JButton();
         TextJudul = new javax.swing.JTextField();
         TextPeminjam = new javax.swing.JTextField();
         LabelJudul = new javax.swing.JLabel();
@@ -113,11 +116,11 @@ public class PinjamBuku extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
         jLabel1.setText("PEMINJAMAN BUKU");
 
-        jButton1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        jButton1.setText("SUBMIT");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        SubmitButton.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
+        SubmitButton.setText("SUBMIT");
+        SubmitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SubmitButtonActionPerformed(evt);
             }
         });
 
@@ -146,6 +149,7 @@ public class PinjamBuku extends javax.swing.JFrame {
             }
         });
 
+        YesButtn.setSelected(true);
         YesButtn.setText("NO");
         YesButtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +167,7 @@ public class PinjamBuku extends javax.swing.JFrame {
                         .addGap(73, 73, 73)
                         .addComponent(jButton2)
                         .addGap(272, 272, 272)
-                        .addComponent(jButton1))
+                        .addComponent(SubmitButton))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(288, 288, 288)
                         .addComponent(jLabel1)))
@@ -175,16 +179,18 @@ public class PinjamBuku extends javax.swing.JFrame {
                     .addComponent(LabelNama)
                     .addComponent(LabelNIM)
                     .addComponent(StatusPeminjam))
-                .addGap(78, 78, 78)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(NoButton)
-                        .addGap(42, 42, 42)
-                        .addComponent(YesButtn))
-                    .addComponent(TextNIM, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(78, 78, 78)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TextNIM, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextJudul, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TextPeminjam, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(YesButtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(NoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -211,7 +217,7 @@ public class PinjamBuku extends javax.swing.JFrame {
                     .addComponent(YesButtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(SubmitButton)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
         );
@@ -234,9 +240,35 @@ public class PinjamBuku extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        try {
+            String judulBuku = TextJudul.getText();
+            String peminjam = TextPeminjam.getText();
+            String nimPeminjam = TextNIM.getText();
+
+            // Assuming you have a method to get the selected status from the radio buttons
+            String statusPeminjam = getStatusPeminjam();
+            
+            // Get the record ID
+            int recordId = DatabaseConnector.getRecordId(judulBuku, peminjam, nimPeminjam);
+
+
+            // Perform the database update based on the status
+            if ("YES".equals(statusPeminjam) && recordId != -1) {
+                UpdateDatabase.updateStatsPeminjaman(recordId);
+                UpdateDatabase.updateTanggalPeminjamanAndSisaWaktu(recordId);
+            }
+
+            // Continue with your existing logic
+            DataAnggota framedata = new DataAnggota();
+            framedata.setVisible(true);
+            dispose();
+
+        } catch (ClassNotFoundException | SQLException e ) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_SubmitButtonActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -244,12 +276,21 @@ public class PinjamBuku extends javax.swing.JFrame {
 
     private void YesButtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YesButtnActionPerformed
         // TODO add your handling code here:
+        NoButton.setSelected(!YesButtn.isSelected());
     }//GEN-LAST:event_YesButtnActionPerformed
 
     private void NoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoButtonActionPerformed
         // TODO add your handling code here:
+        YesButtn.setSelected(!NoButton.isSelected());
     }//GEN-LAST:event_NoButtonActionPerformed
 
+    private String getStatusPeminjam() {
+        if (YesButtn.isSelected()) {
+            return "YES";
+        } else {
+            return "NO";
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -291,11 +332,11 @@ public class PinjamBuku extends javax.swing.JFrame {
     private javax.swing.JLabel LabelNama;
     private javax.swing.JRadioButton NoButton;
     private javax.swing.JLabel StatusPeminjam;
+    private javax.swing.JButton SubmitButton;
     private javax.swing.JTextField TextJudul;
     private javax.swing.JTextField TextNIM;
     private javax.swing.JTextField TextPeminjam;
     private javax.swing.JRadioButton YesButtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

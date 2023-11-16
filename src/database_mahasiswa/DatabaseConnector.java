@@ -14,6 +14,7 @@ public class DatabaseConnector {
         Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(url, username, password);
     }
+    
     private static boolean checkIfIdBukuExists(Connection connection, int id) throws SQLException {
         String checkQuery = "SELECT COUNT(*) FROM data_buku WHERE id = ?";
         PreparedStatement checkStatement = connection.prepareStatement(checkQuery);
@@ -118,5 +119,26 @@ public class DatabaseConnector {
             System.err.println("Error deleting book by name: " + e.getMessage());
             return false;
         }
+    }
+    
+    public static int getRecordId(String judulBuku, String peminjam, String nimPeminjam) throws SQLException, ClassNotFoundException {
+        try (Connection connection = getConnection()) {
+            String query = "SELECT id FROM anggota_perpus WHERE buku_yg_dipinjam = ? AND Nama = ? AND NIM = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, judulBuku);
+                preparedStatement.setString(2, peminjam);
+                preparedStatement.setString(3, nimPeminjam);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return resultSet.getInt("id");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            // Log the exception or handle it according to your application's requirements
+            throw e; // Rethrow the exception or return a meaningful result
+        }
+        return -1; // Return a default value or handle the case where no record is found
     }
 }
