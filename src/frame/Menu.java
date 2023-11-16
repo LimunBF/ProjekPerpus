@@ -49,8 +49,18 @@ public class Menu extends javax.swing.JFrame {
         });
 
         PengembalianBuku.setText("Pengembalian Buku");
+        PengembalianBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PengembalianBukuActionPerformed(evt);
+            }
+        });
 
         DataBuku.setText("Data Buku");
+        DataBuku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DataBukuActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Data Anggota");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,6 +158,17 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_KeluarActionPerformed
+
+    private void DataBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DataBukuActionPerformed
+        // TODO add your handling code here:
+        DataBuku DataBuku = new DataBuku();
+        DataBuku.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_DataBukuActionPerformed
+
+    private void PengembalianBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PengembalianBukuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PengembalianBukuActionPerformed
 
     /**
      * @param args the command line arguments
