@@ -298,7 +298,9 @@ public class DataBuku extends javax.swing.JFrame {
 
     private void HomeBTTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeBTTNActionPerformed
         // TODO add your handling code here:
-        
+        Menu utama = new Menu();
+        utama.setVisible(true);
+        dispose();
     }//GEN-LAST:event_HomeBTTNActionPerformed
 
     private void KembaliButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KembaliButtonActionPerformed

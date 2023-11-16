@@ -201,6 +201,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void PengembalianBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PengembalianBukuActionPerformed
         // TODO add your handling code here:
+        PengembalianBuku kembali = new PengembalianBuku();
+        kembali.setVisible(true);
+        dispose();
     }//GEN-LAST:event_PengembalianBukuActionPerformed
 
     /**
