@@ -217,7 +217,7 @@ public class PinjamBuku extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(288, 288, 288)
                         .addComponent(jLabel1)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 456, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(237, 237, 237)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +292,7 @@ public class PinjamBuku extends javax.swing.JFrame {
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         // TODO add your handling code here:
         try {
-        // Assuming you have a method to get the selected status from the radio buttons
+            // Assuming you have a method to get the selected status from the radio buttons
             String statusPeminjam = getStatusPeminjam();
 
             // Get the selected book title, borrower name, and NIM
@@ -305,7 +305,7 @@ public class PinjamBuku extends javax.swing.JFrame {
 
             // Perform the database update based on the status
             if ("YES".equals(statusPeminjam) && recordId != -1) {
-                UpdateDatabase.updateStatsPeminjaman(recordId);
+                // Update the stats and set tanggal_peminjaman to current timestamp
                 UpdateDatabase.updateTanggalPeminjamanAndSisaWaktu(recordId);
             }
 
@@ -373,15 +373,12 @@ public class PinjamBuku extends javax.swing.JFrame {
             // Assuming getNIMFromDatabase returns a List<String>
             List<String> nimList = DatabaseConnector.getNIMFromDatabase(selectedName);
 
-            // Check if the list is not empty before getting the first element
             if (!nimList.isEmpty()) {
                 String nim = nimList.get(0);
 
                 // Set the retrieved NIM to TextNIM
                 TextNIM.setText(nim);
             } else {
-                // Handle the case where no NIM is found for the selected name
-                // You can set a default value or show an error message
                 TextNIM.setText("NIM not found");
             }
         } catch (Exception e) {

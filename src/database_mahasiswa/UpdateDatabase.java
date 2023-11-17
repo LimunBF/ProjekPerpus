@@ -46,27 +46,22 @@ public class UpdateDatabase {
 
     public static void updateTanggalPeminjamanAndSisaWaktu(int recordId) {
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            String updateTanggalQuery = "UPDATE anggota_perpus SET tanggal_peminjaman = ?, sisa_waktu = ? WHERE id = ?";
+            String updateTanggalQuery = "UPDATE anggota_perpus SET tanggal_peminjaman = current_timestamp(), sisa_waktu = ? WHERE id = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(updateTanggalQuery)) {
-                // Set tanggal_peminjaman to current timestamp
-                Date currentDate = new Date();
-                Timestamp timestamp = new Timestamp(currentDate.getTime());
-                preparedStatement.setTimestamp(1, timestamp);
-
                 // Set sisa_waktu to 5 days from now
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTime(currentDate);
                 calendar.add(Calendar.DAY_OF_MONTH, 5);
                 Timestamp sisaWaktuTimestamp = new Timestamp(calendar.getTime().getTime());
-                preparedStatement.setTimestamp(2, sisaWaktuTimestamp);
+                preparedStatement.setTimestamp(1, sisaWaktuTimestamp);
 
-                preparedStatement.setInt(3, recordId);
+                preparedStatement.setInt(2, recordId);
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     
     public static void updatePengembalianBuku(String judulBuku, String namaPeminjam) throws SQLException {
         try (Connection connection = DriverManager.getConnection(url, username, password)) {

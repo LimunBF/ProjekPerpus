@@ -10,7 +10,7 @@ public class CreateAnggota {
     public static void createDataAnggota(String nama, String nim, String fakultas, String prodi) {
         try {
             Connection koneksi = DatabaseConnector.getConnection();
-
+            
             String insertQuery = "INSERT INTO anggota_perpus (Nama, Nim, Fakultas, Prodi) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = koneksi.prepareStatement(insertQuery);
             preparedStatement.setString(1, nama);
